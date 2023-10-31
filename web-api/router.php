@@ -2,30 +2,36 @@
 
 use App\Tools\NotFound;
 
-$url = $_SERVER['REQUEST_URI'];
-$urlSegments = explode('/', $url);
 $nf = new NotFound();
 
-if (count($urlSegments) >= 2) {
-    $controllerClass = $urlSegments[0];
-    $controllerMethod = $urlSegments[1];
-} else {
-    $nf->error("Wrong Request!");
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $request = $_REQUEST;
 
-$controllerFile = $controllerClass . '.php';
+    if (isset($request['controller']) && isset($request['method'])) {
+        $controllerClass = $request['controller'];
+        $controllerMethod = $request['method'];
 
-if (file_exists($controllerFile)) {
-    include $controllerFile;
-    $controller = new $controllerClass();
+        $controllerClassName = ucfirst($controllerClass) . 'Controller';
+        $controllerFile = $controllerClassName . '.php';
 
-    if (method_exists($controller, $controllerMethod)) {
-        $controller->$controllerMethod();
+        if (file_exists($controllerFile)) {
+            include $controllerFile;
+            $controller = new $controllerClassName();
+
+            if (method_exists($controller, $controllerMethod)) {
+                $controller->$controllerMethod($request);
+            } else {
+                $nf->error("Method Not Found!");
+            }
+        } else {
+            $nf->error("Controller Not Found!");
+        }
     } else {
-        $nf->error("Method Not Found!");
+        $nf->error("Controller and Method parameters are required in the request.");
     }
 } else {
-    $nf->error("Controller Not Found!");
+    $nf->error("Unsupported HTTP Method!");
 }
+
 
 ?>

@@ -127,7 +127,7 @@ class order{
             echo json_encode($response);
         }
     }
-    }
 }
+
 
 ?>

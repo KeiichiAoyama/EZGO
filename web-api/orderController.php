@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Tools\DB;
 
 class order{
-    public function orderTicket($request){
+    public function orderTicket(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');
 
@@ -15,8 +15,6 @@ class order{
         $pid = $request['payID'];
         $amt = $request['tdAmount'];
         $ttp = $request['tdTotalPrice'];
-
-        $tix_arr = get_object_vars($tix);
 
         $fields = array('userID', 'payID');
         $values = array($uid, $pid);
@@ -46,7 +44,7 @@ class order{
         }
     }
 
-    public function orderHotel($request){
+    public function orderHotel(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');
 
@@ -56,8 +54,6 @@ class order{
         $pid = $request['payID'];
         $amt = $request['tdAmount'];
         $ttp = $request['tdTotalPrice'];
-
-        $tix_arr = get_object_vars($tix);
 
         $fields = array('userID', 'payID');
         $values = array($uid, $pid);
@@ -87,7 +83,7 @@ class order{
         }
     }
 
-    public function orderTour($request){
+    public function orderTour(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');
 
@@ -97,8 +93,6 @@ class order{
         $pid = $request['payID'];
         $amt = $request['tdAmount'];
         $ttp = $request['tdTotalPrice'];
-
-        $tix_arr = get_object_vars($tix);
 
         $fields = array('userID', 'payID');
         $values = array($uid, $pid);
@@ -126,6 +120,13 @@ class order{
             header('Content-Type: application/json');
             echo json_encode($response);
         }
+    }
+
+    public function changeTicket(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
     }
 }
 

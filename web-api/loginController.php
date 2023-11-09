@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Tools\DB;
 
 class login{
-    public function checkID($request){
+    public function checkID(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');
 
@@ -24,7 +24,7 @@ class login{
         }
     }
 
-    public function checkExist($request){
+    public function checkExist(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');
 
@@ -43,7 +43,7 @@ class login{
         }
     }
 
-    public function createAccount($request){
+    public function createAccount(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');
 

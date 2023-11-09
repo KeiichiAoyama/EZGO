@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $controller = new $controllerClassName();
 
             if (method_exists($controller, $controllerMethod)) {
-                $controller->$controllerMethod($request);
+                $controller->$controllerMethod();
             } else {
                 $nf->error("Method Not Found!");
             }

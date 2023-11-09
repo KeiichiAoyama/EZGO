@@ -11,11 +11,38 @@ class order{
 
         $request = json_decode($json, true);
         $tix = $request['ticket'];
+        $uid = $request['userID'];
+        $pid = $request['payID'];
+        $amt = $request['tdAmount'];
+        $ttp = $request['tdTotalPrice'];
 
         $tix_arr = get_object_vars($tix);
 
-        if($db->insert('users', $assoc_fields)){
-            
+        $fields = array('userID', 'payID');
+        $values = array($uid, $pid);
+        $assoc_fields = array_combine($fields, $values);
+
+        if($db->insert('transactions', $assoc_fields)){
+
+            $tidAll = $db->select('ticketID', 'transactions')->getResult();
+            $tid = $tidAll[count($tidAll)-1]->ticketID;
+
+            $fields = array('transID', 'productID', 'tdAmount', 'tdTotalPrice');
+            $values = array($tid, $tix->productID, $amt, $ttp);
+
+            if($db->insert('transaction_details', $assoc_fields)){
+                $response = ['Success'=> True];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }else{
+                $response = ['Success'=> False];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }
     }
 }

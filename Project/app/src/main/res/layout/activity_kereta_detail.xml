@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".KeretaDetailActivity">
+    <ImageView
+        android:background="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp">
+
+        <ImageButton
+            android:id="@+id/backDetailKereta"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/white_arrow_back_24" />
+        <TextView
+            android:layout_marginHorizontal="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kereta"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <ImageButton
+            android:id="@+id/searchDetailKereta"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/white_search_24" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="370dp"
+        android:layout_height="205dp"
+        android:background="@drawable/roundmain"
+        android:elevation="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/txtDariPesawat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Solo"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/baseline_arrow_forward_24"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/txtKePesawat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jakarta"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min, 29 Okt 2023"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/line"
+            />
+
+        <LinearLayout
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/kereta"/>
+                <TextView
+                    android:gravity="center"
+                    android:background="@drawable/round_pesawat"
+                    android:layout_gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="SOC"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13.00"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1j 15mnt"/>
+                <ImageView
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="230dp"
+                    android:layout_height="3dp"
+                    android:background="@drawable/line"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Langsung"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/kereta"/>
+                <TextView
+                    android:gravity="center"
+                    android:background="@drawable/round_pesawat"
+                    android:layout_gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="CGK"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14.15"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/kereta"/>
+            <TextView
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Argo Dwipangga"
+                android:textStyle="bold"/>
+            <ImageView
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/baseline_circle_24"/>
+            <TextView
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Economy"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="290dp"
+        android:background="@drawable/roundmain"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Information"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_people_alt_24"
+                android:drawablePadding="5dp"
+                android:text="Person"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/personDetail1"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:background="@drawable/roundmain"
+                android:dropDownWidth="match_parent"
+                android:dropDownVerticalOffset="40dp"
+                android:popupBackground="@drawable/roundmain"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/baseline_calendar_month_24"
+                android:drawablePadding="5dp"
+                android:text="Date"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/calenderTour"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:drawableEnd="@drawable/baseline_calendar_month_24"
+                android:padding="5dp"
+                android:text="dd/mm/yyy"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_attach_money_24"
+                android:drawablePadding="5dp"
+                android:text="Price"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:paddingHorizontal="5dp"
+                android:text="Rp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="Additional Fee"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:paddingHorizontal="5dp"
+                android:text="Rp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="Subtotal"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:paddingHorizontal="5dp"
+                android:text="Rp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/orderTour"
+            android:layout_width="340dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Order Now"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="10dp"
+            app:elevation="10dp" />
+    </LinearLayout>
+</RelativeLayout>

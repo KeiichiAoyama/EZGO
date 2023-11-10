@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PesawatActivity">
+
+    <!--Top bar-->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/roundedshape"
+        android:contentDescription="@string/bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backPesawat"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/white_arrow_back_24"
+            android:contentDescription="@string/btn_b" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120dp"
+            android:text="@string/pesawat"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/searchPesawat"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/white_search_24"
+            android:contentDescription="@string/btn_s" />
+    </androidx.appcompat.widget.Toolbar>
+    <!--Main-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/roundmain"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--From-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/btnFromPlane"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_stroke"
+            android:drawablePadding="10dp"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/from"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/take_off" />
+
+        <!--To-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/to"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/btnToPlane"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_stroke"
+            android:drawablePadding="10dp"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/to"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/landing" />
+        <!--Date-->
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/date"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/calender"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_stroke"
+            android:drawablePadding="10dp"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/ddmmyyyy"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/baseline_calendar_month_24" />
+        <!--Passenger-->
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/passenger"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_stroke"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_people_alt_24"
+                android:contentDescription="@string/icon" />
+
+            <Spinner
+                android:id="@+id/passanger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/roundmain"
+                android:dropDownWidth="match_parent"
+                android:dropDownVerticalOffset="40dp"
+                android:gravity="start|center"
+                android:popupBackground="@drawable/round_spinner"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+        <!--Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSearchPesawat"
+            android:layout_width="320dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/search"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

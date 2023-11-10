@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Project"
+        tools:targetApi="31">
+        <activity
+            android:name=".ListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TermsNCondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SecurityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TourViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LandingFragmentThree"
+            android:exported="false" />
+        <activity
+            android:name=".LandingFragmentTwo"
+            android:exported="false" />
+        <activity
+            android:name=".LandingFragmentOne"
+            android:exported="false" />
+        <activity
+            android:name=".LandingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HotelDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HotelViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BusDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BusViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KeretaViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PesawatViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KeretaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PesawatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KeretaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PesawatDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExploreDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SingupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TourDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HotelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ExploreFragment"
+            android:exported="false" />
+        <activity
+            android:name=".OrderFragment"
+            android:exported="false" />
+        <activity
+            android:name=".HomeFragment"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

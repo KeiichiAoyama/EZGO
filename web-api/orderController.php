@@ -193,6 +193,24 @@ class order{
             echo json_encode($response);
         }   
     }
+
+    public function getTicketSingular(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $tid = $request['ticketID'];
+
+        $where = array('ticketID', '=', $tid);
+        $tixs = $db->select('userID', 'users', $where)->getResult();
+
+        if(count($tixs) > 0){
+            $tix = $tixs[0];
+            $response = ['Success'=> True, 'Ticket'];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
 }
 
 

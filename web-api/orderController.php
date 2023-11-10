@@ -206,9 +206,7 @@ class order{
 
         if(count($tixs) > 0){
             $tix = $tixs[0];
-            $response = ['Success'=> True, 'Ticket'];
-            header('Content-Type: application/json');
-            echo json_encode($response);
+            
         }
     }
 }

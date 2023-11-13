@@ -202,11 +202,73 @@ class order{
         $tid = $request['ticketID'];
 
         $where = array('ticketID', '=', $tid);
-        $tixs = $db->select('userID', 'users', $where)->getResult();
+        $tixs = $db->select('*', 'tickets', $where)->getResult();
 
         if(count($tixs) > 0){
             $tix = $tixs[0];
-            
+            $imgPath = $tix->tcImage;
+            $fullPath = "images/".$imgPath;
+            $tix->tcImage = $fullPath;
+
+            $response = ['Success'=> True, 'ticket' => $tix];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getHotelSingular(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $hid = $request['hotelID'];
+
+        $where = array('hotelID', '=', $hid);
+        $htls = $db->select('*', 'hotel', $where)->getResult();
+
+        if(count($htls) > 0){
+            $htl = $htls[0];
+            $imgPath = $htl->hImage;
+            $fullPath = "images/".$imgPath;
+            $htl->hImage = $fullPath;
+
+            $response = ['Success'=> True, 'hotel' => $htl];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getTourSingular(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $hid = $request['tourID'];
+
+        $where = array('tourID', '=', $trid);
+        $trps = $db->select('*', 'tour_package', $where)->getResult();
+
+        if(count($trps) > 0){
+            $trp = $trps[0];
+            $imgPath = $trp->tpImage;
+            $fullPath = "images/".$imgPath;
+            $trp->tpImage = $fullPath;
+
+            $response = ['Success'=> True, 'tour' => $trp];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }
     }
 }

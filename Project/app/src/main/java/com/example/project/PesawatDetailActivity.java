@@ -15,6 +15,7 @@ public class PesawatDetailActivity extends AppCompatActivity {
 
     ImageButton back, search;
     ImageView iconPesawat;
+    private String ID;
 
     MaterialButton order;
     TextView from,to,date,arivTime,departTime,travelTime,planeName,seatType,ticketprice,qty,addfee,totalprice;
@@ -41,6 +42,7 @@ public class PesawatDetailActivity extends AppCompatActivity {
         order = (MaterialButton)findViewById(R.id.orderPesawat);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
+            ID = bundle.getString("ID");
             from.setText(bundle.getString("From"));
             to.setText(bundle.getString("Dest"));
             travelTime.setText(bundle.getString("TravelTime"));
@@ -54,6 +56,10 @@ public class PesawatDetailActivity extends AppCompatActivity {
         });
         order.setOnClickListener(view -> {
             Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
+            Bundle b = new Bundle();
+            b.putString("id",bundle.getString("ID"));
+            b.putString("price", totalprice.getText().toString());
+            i.putExtras(b);
             startActivity(i);
         });
 

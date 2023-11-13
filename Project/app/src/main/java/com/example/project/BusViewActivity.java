@@ -24,13 +24,13 @@ public class BusViewActivity extends AppCompatActivity {
 
         TicketData[] ticketData = new TicketData[]
                 {
-                        new TicketData("5/11/2023","item1","item2","10.30","1j 15mnt",700000,"Economy","11.45"),
-                        new TicketData("5/11/2023","item1","item2","10.30","1j 15mnt",700000,"Economy","11.45"),
-                        new TicketData("5/11/2023","item1","item2","10.30","1j 15mnt",700000,"Economy","11.45"),
-                        new TicketData("5/11/2023","item2","item1","10.30","1j 15mnt",700000,"Economy","11.45"),
-                        new TicketData("5/11/2023","SOC","CGK","10.30","1j 15mnt",700000,"Economy","11.45"),
-                        new TicketData("5/11/2023","SOC","CGK","10.30","1j 15mnt",700000,"Economy","11.45"),
-                        new TicketData("5/11/2023","SOC","CGK","10.30","1j 15mnt",700000,"Economy","11.45")
+                        new TicketData("A1","5/11/2023","item1","item2","10.30","1j 15mnt",700000,"Economy","11.45"),
+                        new TicketData("A2","5/11/2023","item1","item2","10.30","1j 15mnt",700000,"Economy","11.45"),
+                        new TicketData("A3","5/11/2023","item1","item2","10.30","1j 15mnt",700000,"Economy","11.45"),
+                        new TicketData("A4","5/11/2023","item2","item1","10.30","1j 15mnt",700000,"Economy","11.45"),
+                        new TicketData("A5","5/11/2023","SOC","CGK","10.30","1j 15mnt",700000,"Economy","11.45"),
+                        new TicketData("A6","5/11/2023","SOC","CGK","10.30","1j 15mnt",700000,"Economy","11.45"),
+                        new TicketData("A6","5/11/2023","SOC","CGK","10.30","1j 15mnt",700000,"Economy","11.45")
                 };
 
         adapterViewBus = new AdapterViewBus(this, ticketData);

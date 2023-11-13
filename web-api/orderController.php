@@ -423,7 +423,90 @@ class order{
     }
 
     public function getTicketSpecificType(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
 
+        $request = json_decode($json, true);
+        $type = $request['type'];
+
+        $where = array('tcType', '=', $type);
+        $tixs = $db->select('*', 'tickets', $where)->getResult();
+
+        if(count($tixs) > 0){
+            foreach($tixs as $tix){
+                $imgPath = $tix->tcImage;
+                $fullPath = "images/".$imgPath;
+                $tix->tcImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tickets' => $tixs];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getMixedProd(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $city = $request['city'];
+
+        $tixs = array();
+        $htls = array();
+        $trps = array();
+
+        $where = array('tcFrom','=', $city);
+        $tixs1 = $db->select('*', 'tickets', $where);
+        
+        if(count($tixs1) > 0){
+            $where = array('tcDestination','=', $city);
+            $tixs2 = $db->select('*', 'tickets', $where);
+
+            if(count($tixs2) > 0){
+                $tixs = $tixs1 + $tixs2;
+                
+                foreach($tixs as $tix){
+                    $imgPath = $tix->tcImage;
+                    $fullPath = "images/".$imgPath;
+                    $tix->tcImage = $fullPath;
+                }
+            }else{
+                $response = ['Success'=> False];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+
+        $where = array('cityID','=', $city);
+        $htls = $db->select('*', 'hotel', $where);
+
+        if(count($htls) > 0){
+            $where = array('cityID','=', $city);
+            $trps = $db->select('*', 'tour_package', $where);
+
+            if(count($trps) > 0){
+                $response = ['Success'=> True, 'tickets' => $tixs, 'hotels' => $htls, 'tours' => $trps];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }else{
+                $response = ['Success'=> False];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
     }
 }
 

@@ -117,34 +117,14 @@
             android:orientation="horizontal"
             android:paddingVertical="10dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/txtDepartureDetailPesawat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/take_off"
-                    android:contentDescription="@string/icon" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/round_pesawat"
-                    android:gravity="center"
-                    android:text="SOC" />
-
-                <TextView
-                    android:id="@+id/txtDepartureDetailPesawat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="13.00" />
-            </LinearLayout>
+                android:text="13.00"
+                app:drawableTopCompat="@drawable/take_off" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -174,34 +154,15 @@
                     android:text="Langsung" />
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/txtArrivalTimeDetailPesawat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
-                android:orientation="vertical">
+                android:text="14.15"
+                app:drawableTopCompat="@drawable/landing" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/landing"
-                    android:contentDescription="@string/icon2" />
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/round_pesawat"
-                    android:gravity="center"
-                    android:text="CGK" />
-
-                <TextView
-                    android:id="@+id/txtArrivalTimeDetailPesawat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="14.15" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -255,7 +216,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="@string/description"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -268,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Information"
+            android:text="@string/information"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -278,59 +239,123 @@
             android:text="@string/lorem" />
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detail Penumpang"
+            android:layout_marginTop="10dp"
+            android:text="@string/purchase_detail"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="No. ID" />
-
-        <EditText
-            android:paddingLeft="10dp"
-            android:hint="Nomor Identitas"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/shape_stroke" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Nama Lengkap" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:paddingLeft="10dp"
-            android:hint="Nama Lengkap"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/shape_stroke" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipe Penumpang" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/ticket_price" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/shape_stroke" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ticket_quantity" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/additional_fee" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_price"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="80dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/rp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ticketPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/ticketQty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/addFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/totalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/orderTour"
-            android:layout_width="340dp"
+            android:id="@+id/orderPesawat"
+            android:layout_width="320dp"
             android:layout_height="55dp"
-            android:layout_marginTop="20dp"
-            android:text="Order Now"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/order_now"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:backgroundTint="@color/blue"
-            app:elevation="10dp" />
+            app:backgroundTint="@color/blue" />
     </LinearLayout>
 </RelativeLayout>

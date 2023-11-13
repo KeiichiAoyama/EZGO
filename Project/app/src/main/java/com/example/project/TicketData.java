@@ -1,6 +1,7 @@
 package com.example.project;
 
 public class TicketData {
+    private String Id;
     private String Date;
     private String From;
     private String Dest;
@@ -10,7 +11,8 @@ public class TicketData {
     private String Type;
     private String ArivTime;
 
-    public TicketData(String date, String from, String dest, String deptTime, String travelTime, int price, String type, String arivTime) {
+    public TicketData(String id,String date, String from, String dest, String deptTime, String travelTime, int price, String type, String arivTime) {
+        Id = id;
         Date = date;
         From = from;
         Dest = dest;
@@ -19,6 +21,14 @@ public class TicketData {
         Price = price;
         Type = type;
         ArivTime = arivTime;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getArivTime() {

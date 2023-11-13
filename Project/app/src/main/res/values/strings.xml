@@ -108,5 +108,14 @@
     <string name="icon2">Icon2</string>
     <string name="icon3">Icon3</string>
     <string name="circle2">Circle2</string>
+    <string name="purchase_detail">Purchase Detail</string>
+    <string name="ticket_price">Ticket Price</string>
+    <string name="ticket_quantity">Ticket Quantity</string>
+    <string name="additional_fee">Additional Fee</string>
+    <string name="total_price">Total Price</string>
+    <string name="order_now">Order Now</string>
+    <string name="information">Information</string>
+    <string name="description">Description</string>
+    <string name="rp">Rp</string>
 
 </resources>

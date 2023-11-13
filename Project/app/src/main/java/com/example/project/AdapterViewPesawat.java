@@ -55,6 +55,7 @@ public class AdapterViewPesawat extends RecyclerView.Adapter<AdapterViewPesawat.
         holder.itemView.setOnClickListener(view -> {
             Intent i = new Intent(context, PesawatDetailActivity.class);
             Bundle bundle = new Bundle();
+            bundle.putString("ID", ticketData.getId());
             bundle.putString("From", ticketData.getFrom());
             bundle.putString("Dest", ticketData.getDest());
             bundle.putString("TravelTime", ticketData.getTravelTime());

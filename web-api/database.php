@@ -77,7 +77,7 @@ class DB{
         return false;
     }
 
-    public function select($getField, $table, $where = null){
+    public function select($getField, $table, $where = null, $limit = null){
         if(is_array($where) && count($where) === 3 && !($this->isRectangular($where))){
             $operators = array('=', '>', '<', '>=', '<=');
 
@@ -107,6 +107,9 @@ class DB{
                 }
                 $value[] = $where[$i][2];
                 $x++;
+            }
+            if (!is_null($limit)) {
+                $sql .= " LIMIT {$limit}";
             }
             if(!$this->query($sql, $value)->error()){
                 return $this;

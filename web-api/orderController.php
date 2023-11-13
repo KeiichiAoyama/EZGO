@@ -271,6 +271,160 @@ class order{
             echo json_encode($response);
         }
     }
+
+    public function getTicketSeveral(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $num = $request['number'];
+
+        $tixs = $db->select('*', 'tickets', null, $num)->getResult();
+        
+        if(count($tixs) > 0){
+            foreach($tixs as $tix){
+                $imgPath = $tix->tcImage;
+                $fullPath = "images/".$imgPath;
+                $tix->tcImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tickets' => $tixs];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getHotelSeveral(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $num = $request['number'];
+
+        $htls = $db->select('*', 'hotel', null, $num)->getResult();
+        
+        if(count($htls) > 0){
+            foreach($htls as $htl){
+                $imgPath = $htl->hImage;
+                $fullPath = "images/".$imgPath;
+                $htl->hImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'hotels' => $htls];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getTourSeveral(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $num = $request['number'];
+
+        $htls = $db->select('*', 'tour_package', null, $num)->getResult();
+        
+        if(count($trps) > 0){
+            foreach($trps as $trp){
+                $imgPath = $trp->tpImage;
+                $fullPath = "images/".$imgPath;
+                $trp->tpImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tours' => $trps];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getTicketAll(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $tixs = $db->select('*', 'tickets')->getResult();
+
+        if(count($tixs) > 0){
+            foreach($tixs as $tix){
+                $imgPath = $tix->tcImage;
+                $fullPath = "images/".$imgPath;
+                $tix->tcImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tickets' => $tixs];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getHotelAll(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $htls = $db->select('*', 'hotel')->getResult();
+
+        if(count($htls) > 0){
+            foreach($htls as $htl){
+                $imgPath = $htl->hImage;
+                $fullPath = "images/".$imgPath;
+                $htl->hImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'hotels' => $htls];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getTourAll(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $trps = $db->select('*', 'tour_package')->getResult();
+
+        if(count($trps) > 0){
+            foreach($trps as $trp){
+                $imgPath = $trp->tpImage;
+                $fullPath = "images/".$imgPath;
+                $trp->tpImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tours' => $trps];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function getTicketSpecificType(){
+
+    }
 }
 
 

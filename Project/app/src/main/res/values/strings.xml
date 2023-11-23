@@ -117,5 +117,9 @@
     <string name="information">Information</string>
     <string name="description">Description</string>
     <string name="rp">Rp</string>
+    <string name="ticket">Ticket</string>
+    <string name="explore_now">Explore Now...</string>
+    <string name="ticket_type">Ticket Type</string>
+    <string name="arrow">arrow</string>
 
 </resources>

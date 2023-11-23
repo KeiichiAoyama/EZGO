@@ -54,31 +54,13 @@
             android:name=".HotelViewActivity"
             android:exported="false" />
         <activity
-            android:name=".BusDetailActivity"
+            android:name=".TicketViewActivity"
             android:exported="false" />
         <activity
-            android:name=".BusViewActivity"
+            android:name=".TicketActivity"
             android:exported="false" />
         <activity
-            android:name=".KeretaViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PesawatViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BusActivity"
-            android:exported="false" />
-        <activity
-            android:name=".KeretaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PesawatActivity"
-            android:exported="false" />
-        <activity
-            android:name=".KeretaDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PesawatDetailActivity"
+            android:name=".TicketDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ExploreDetailActivity"

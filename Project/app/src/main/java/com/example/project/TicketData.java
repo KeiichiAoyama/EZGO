@@ -9,9 +9,11 @@ public class TicketData {
     private String TravelTime;
     private int Price;
     private String Type;
+
+    private String TicketType;
     private String ArivTime;
 
-    public TicketData(String id,String date, String from, String dest, String deptTime, String travelTime, int price, String type, String arivTime) {
+    public TicketData(String id, String date, String from, String dest, String deptTime, String travelTime, int price, String type, String arivTime, String ticketType) {
         Id = id;
         Date = date;
         From = from;
@@ -21,6 +23,15 @@ public class TicketData {
         Price = price;
         Type = type;
         ArivTime = arivTime;
+        TicketType = ticketType;
+    }
+
+    public String getTicketType() {
+        return TicketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        TicketType = ticketType;
     }
 
     public String getId() {

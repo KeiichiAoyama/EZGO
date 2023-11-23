@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".PesawatDetailActivity">
+    tools:context=".TicketDetailActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:paddingHorizontal="10dp">
 
         <ImageButton
-            android:id="@+id/backDetailPesawat"
+            android:id="@+id/backDetailTicket"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/white_arrow_back_24"
@@ -38,7 +38,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/searchDetailPesawat"
+            android:id="@+id/searchDetailTicket"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/white_search_24"
@@ -69,7 +69,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtFromDetailPesawat"
+                    android:id="@+id/txtFromDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -87,7 +87,7 @@
                     android:contentDescription="@string/circle" />
 
                 <TextView
-                    android:id="@+id/txtToDetailPesawat"
+                    android:id="@+id/txtToDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -98,7 +98,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtDateDetailPesawat"
+                android:id="@+id/txtDateDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Min, 29 Okt 2023" />
@@ -118,7 +118,7 @@
             android:paddingVertical="10dp">
 
             <TextView
-                android:id="@+id/txtDepartureDetailPesawat"
+                android:id="@+id/txtDepartureDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -134,7 +134,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtTravelTimeDetailPesawat"
+                    android:id="@+id/txtTravelTimeDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -155,7 +155,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtArrivalTimeDetailPesawat"
+                android:id="@+id/txtArrivalTimeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -173,14 +173,14 @@
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/iconDetailPesawat"
+                android:id="@+id/iconDetailTicket"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/pesawat"
                 android:contentDescription="@string/icon3" />
 
             <TextView
-                android:id="@+id/txtNamaPesawatDetail"
+                android:id="@+id/txtNamaDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -195,7 +195,7 @@
                 android:contentDescription="@string/circle2" />
 
             <TextView
-                android:id="@+id/txtSeatTypeDetailPesawat"
+                android:id="@+id/txtSeatTypeDetailTicket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -348,7 +348,7 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/orderPesawat"
+            android:id="@+id/orderTicket"
             android:layout_width="320dp"
             android:layout_height="55dp"
             android:layout_gravity="center"

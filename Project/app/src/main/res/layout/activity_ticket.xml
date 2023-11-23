@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".BusActivity">
+    tools:context=".TicketActivity">
 
     <!--Top bar-->
     <ImageView
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@drawable/roundedshape"
+        android:contentDescription="@string/bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,26 +27,28 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/back"
+            android:id="@+id/backTicket1"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/white_arrow_back_24" />
+            android:background="@drawable/white_arrow_back_24"
+            android:contentDescription="@string/btn_b" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="120dp"
-            android:text="@string/bus"
+            android:text="@string/ticket"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/search"
+            android:id="@+id/searchTicket1"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/white_search_24" />
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/white_search_24"
+            android:contentDescription="@string/btn_s" />
     </androidx.appcompat.widget.Toolbar>
     <!--Main-->
     <LinearLayout
@@ -64,71 +67,71 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From"
-            android:textSize="18dp" />
+            android:text="@string/from"
+            android:textSize="18sp" />
 
         <TextView
-            android:gravity="start|center"
-            android:textStyle="bold"
-            android:text="From"
-            android:id="@+id/btnFromBus"
-            android:drawablePadding="10dp"
-            android:layout_width="match_parent"
+            android:id="@+id/btnFrom"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_stroke"
-            android:drawableStart="@drawable/bus"
-            android:padding="10dp" />
+            android:drawablePadding="10dp"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/from"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/baseline_location_on_24" />
 
         <!--To-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="To"
-            android:textSize="18dp" />
+            android:text="@string/to"
+            android:textSize="18sp" />
 
         <TextView
-            android:gravity="start|center"
-            android:text="To"
-            android:textStyle="bold"
-            android:id="@+id/btnToBus"
-            android:drawablePadding="10dp"
-            android:layout_width="match_parent"
+            android:id="@+id/btnTo"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_stroke"
-            android:drawableStart="@drawable/bus"
-            android:padding="10dp" />
+            android:drawablePadding="10dp"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/to"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/outline_location_on_24" />
         <!--Date-->
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Date"
+            android:text="@string/date"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
-            android:gravity="start|center"
             android:id="@+id/calender"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_stroke"
-            android:drawableStart="@drawable/baseline_calendar_month_24"
             android:drawablePadding="10dp"
+            android:gravity="start|center"
             android:padding="10dp"
-            android:text="DD/MM/YYYY"
-            android:textStyle="bold" />
+            android:text="@string/ddmmyyyy"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/baseline_calendar_month_24" />
         <!--Passenger-->
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Passenger"
+            android:text="@string/passenger"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape_stroke"
@@ -138,10 +141,10 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/baseline_people_alt_24" />
+                android:background="@drawable/baseline_people_alt_24"
+                android:contentDescription="@string/icon" />
 
             <Spinner
-                android:gravity="start|center"
                 android:id="@+id/passanger"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,17 +152,52 @@
                 android:background="@drawable/roundmain"
                 android:dropDownWidth="match_parent"
                 android:dropDownVerticalOffset="40dp"
+                android:gravity="start|center"
+                android:popupBackground="@drawable/round_spinner"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+        <!--Passenger-->
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ticket_type"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_stroke"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_people_alt_24"
+                android:contentDescription="@string/icon" />
+
+            <Spinner
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/roundmain"
+                android:dropDownWidth="match_parent"
+                android:dropDownVerticalOffset="40dp"
+                android:gravity="start|center"
                 android:popupBackground="@drawable/round_spinner"
                 android:spinnerMode="dropdown" />
         </LinearLayout>
         <!--Button-->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSearchBus"
-            android:layout_width="340dp"
+            android:id="@+id/btnSearchTicket1"
+            android:layout_width="320dp"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
-            android:text="Search"
-            android:textSize="16dp"
+            android:text="@string/search"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="10dp" />
     </LinearLayout>

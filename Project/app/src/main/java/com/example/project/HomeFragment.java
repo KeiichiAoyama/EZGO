@@ -2,7 +2,6 @@ package com.example.project;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +25,7 @@ public class HomeFragment extends Fragment {
 
     ArrayList<MyItem> itemList1,itemList2;
 
-    LinearLayout btnPesawat, btnKereta, btnBus, btnHotel, btnTour, btnSearch;
+    LinearLayout btnTicket, btnHotel, btnTour, btnSearch;
     ShapeableImageView btnProfile;
 
     @Nullable
@@ -35,68 +34,34 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_home,container,false);
         //find id
         btnSearch = v.findViewById(R.id.search);
-        btnPesawat = v.findViewById(R.id.btnPesawat);
-        btnKereta = v.findViewById(R.id.btnKereta);
-        btnBus = v.findViewById(R.id.btnBus);
+        btnTicket = v.findViewById(R.id.btnTicket);
         btnHotel = v.findViewById(R.id.btnHotel);
         btnTour = v.findViewById(R.id.btnTour);
         btnProfile = v.findViewById(R.id.profileHome);
 
-        btnPesawat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), PesawatActivity.class);
-                startActivity(i);
-            }
+        btnTicket.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), TicketActivity.class);
+            startActivity(i);
+        });
+        btnHotel.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), HotelActivity.class);
+            startActivity(i);
+        });
+        btnTour.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), TourActivity.class);
+            startActivity(i);
         });
 
-        btnKereta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), KeretaActivity.class);
-                startActivity(i);
-            }
+        btnProfile.setOnClickListener(view -> {
+            ProfileFragment profileFragment = new ProfileFragment();
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragmenContainer, profileFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
-        btnBus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), BusActivity.class);
-                startActivity(i);
-            }
-        });
-        btnHotel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), HotelActivity.class);
-                startActivity(i);
-            }
-        });
-        btnTour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), TourActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ProfileFragment profileFragment = new ProfileFragment();
-
-                // Memulai transaksi untuk mengganti Fragment pertama dengan Fragment kedua
-                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmenContainer, profileFragment);
-                transaction.addToBackStack(null); // Menambahkan transaksi ke back stack (opsional)
-                transaction.commit();
-            }
-        });
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(),SearchActivity.class);
-                startActivity(i);
-            }
+        btnSearch.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(),SearchActivity.class);
+            startActivity(i);
         });
 
         recyclerView = v.findViewById(R.id.ViewHome1);

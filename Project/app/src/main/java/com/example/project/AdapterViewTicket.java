@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdapterViewPesawat extends RecyclerView.Adapter<AdapterViewPesawat.MyViewHolder> {
+public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.MyViewHolder> {
     final Context context;
     final TicketData[] originalTicket;
     private TicketData[] ticket;
 
-    public AdapterViewPesawat(Context context, TicketData[] ticket) {
+    public AdapterViewTicket(Context context, TicketData[] ticket) {
         this.context = context;
         this.originalTicket = ticket.clone();
         this.ticket = ticket;
@@ -28,8 +28,6 @@ public class AdapterViewPesawat extends RecyclerView.Adapter<AdapterViewPesawat.
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtFrom = itemView.findViewById(R.id.txtFrom);
-            txtDest = itemView.findViewById(R.id.txtTo);
             txTravelTime = itemView.findViewById(R.id.duration);
             txtPrice = itemView.findViewById(R.id.txtPrice);
             txtdeptTime = itemView.findViewById(R.id.FromTime);
@@ -40,7 +38,7 @@ public class AdapterViewPesawat extends RecyclerView.Adapter<AdapterViewPesawat.
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_pesawat, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.card_ticket, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -53,7 +51,7 @@ public class AdapterViewPesawat extends RecyclerView.Adapter<AdapterViewPesawat.
         holder.txtdeptTime.setText(ticketData.getDeptTime());
         holder.txtArivTime.setText(ticketData.getArivTime());
         holder.itemView.setOnClickListener(view -> {
-            Intent i = new Intent(context, PesawatDetailActivity.class);
+            Intent i = new Intent(context, TicketDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("ID", ticketData.getId());
             bundle.putString("From", ticketData.getFrom());
@@ -71,11 +69,12 @@ public class AdapterViewPesawat extends RecyclerView.Adapter<AdapterViewPesawat.
         return ticket.length;
     }
 
-    public void filter(String fromText, String destText, String dateText) {
+    public void filter(String fromText, String destText, String dateText, String type) {
         ArrayList<TicketData> filteredList = new ArrayList<>();
         for (TicketData ticketData : originalTicket) {
             if (ticketData.getFrom().toLowerCase().contains(fromText.toLowerCase()) &&
                     ticketData.getDest().toLowerCase().contains(destText.toLowerCase()) &&
+                    ticketData.getTicketType().toLowerCase().contains(type.toLowerCase()) &&
                     ticketData.getDate().equals(dateText)) {
                 filteredList.add(ticketData);
             }

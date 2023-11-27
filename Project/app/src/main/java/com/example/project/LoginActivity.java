@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,27 +35,22 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail = (TextInputEditText)findViewById(R.id.inputEmail);
         inputPass = (TextInputEditText)findViewById(R.id.inputPass);
         errLogin = (TextView)findViewById(R.id.errLogin);
-        btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                email = inputEmail.getText().toString();
-                pass = inputPass.getText().toString();
-                if (email.equalsIgnoreCase(serverEmail) && pass.equalsIgnoreCase(serverPass)) {
-                    if (errLogin != null) {
-                        errLogin.setVisibility(View.GONE);
-                    }
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
-                    inputEmail.setText("");
-                    inputPass.setText("");
-                } else {
-                    if (errLogin != null) {
-                        errLogin.setVisibility(View.VISIBLE);
-                    }
-                    inputEmail.setText("");
-                    inputPass.setText("");
+        btnlogin.setOnClickListener(view -> {
+            email = Objects.requireNonNull(inputEmail.getText()).toString();
+            pass = Objects.requireNonNull(inputPass.getText()).toString();
+            if (email.equalsIgnoreCase(serverEmail) && pass.equalsIgnoreCase(serverPass)) {
+                if (errLogin != null) {
+                    errLogin.setVisibility(View.GONE);
+                }
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            } else {
+                if (errLogin != null) {
+                    errLogin.setVisibility(View.VISIBLE);
                 }
             }
+            inputEmail.setText("");
+            inputPass.setText("");
         });
 
     }

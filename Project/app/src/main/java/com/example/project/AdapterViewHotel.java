@@ -6,19 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 public class AdapterViewHotel extends RecyclerView.Adapter<AdapterViewHotel.MyViewHolder> {
-    private Context context;
-    private HotelData[] hotel;
+    private final Context context;
+    private final HotelData[] hotel;
 
     public AdapterViewHotel(Context context, HotelData[] hotel) {
         this.context = context;
         this.hotel = hotel;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView txtNama, txtPrice;
 
         public MyViewHolder(View itemView) {
@@ -28,10 +29,11 @@ public class AdapterViewHotel extends RecyclerView.Adapter<AdapterViewHotel.MyVi
         }
     }
 
+    @NonNull
     @Override
-    public AdapterViewHotel.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterViewHotel.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.card_hotel, parent, false);
-        return new AdapterViewHotel.MyViewHolder(view);
+        return new MyViewHolder(view);
     }
 
     @Override

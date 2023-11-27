@@ -24,7 +24,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:background="@drawable/hero_1"
+                android:background="@drawable/hero"
                 android:contentDescription="@string/bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

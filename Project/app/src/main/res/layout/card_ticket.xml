@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="370dp"
     android:layout_height="170dp"
-    android:gravity="center|start"
     android:layout_margin="10dp"
     android:background="@drawable/roundmain"
     android:elevation="5dp"
+    android:gravity="center|start"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -17,10 +18,11 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/logoPesawat"
+            android:id="@+id/logo"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@drawable/pesawat" />
+            android:background="@drawable/pesawat"
+            android:contentDescription="@string/logo" />
 
         <TextView
             android:id="@+id/planeName"
@@ -34,7 +36,8 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginHorizontal="5dp"
-            android:background="@drawable/baseline_circle_24" />
+            android:background="@drawable/baseline_circle_24"
+            android:contentDescription="@string/circle" />
 
         <TextView
             android:id="@+id/seatType"
@@ -48,7 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="10dp"
-        android:background="@drawable/line" />
+        android:background="@drawable/line"
+        android:contentDescription="@string/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,26 +61,13 @@
         android:orientation="horizontal"
         android:paddingVertical="10dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/FromTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:contentDescription="@string/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/take_off" />
-
-            <TextView
-                android:id="@+id/FromTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="13.00" />
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:text="13.00"
+            app:drawableTopCompat="@drawable/baseline_location_on_24" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -96,7 +87,8 @@
                 android:layout_width="80dp"
                 android:layout_height="3dp"
                 android:layout_marginVertical="10dp"
-                android:background="@drawable/line" />
+                android:background="@drawable/line"
+                android:contentDescription="@string/line2" />
 
             <TextView
                 android:id="@+id/type"
@@ -106,38 +98,25 @@
                 android:text="Langsung" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/ToTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:text="14.15"
+            app:drawableTopCompat="@drawable/outline_location_on_24" />
 
-            <ImageView
-                android:contentDescription="@string/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/landing" />
-
-            <TextView
-                android:id="@+id/ToTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="14.15" />
-        </LinearLayout>
         <TextView
             android:id="@+id/txtPrice"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="bottom"
-            android:layout_marginHorizontal="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
             android:text="Rp. 700.000/Pax"
             android:textColor="@color/blue"
             android:textSize="16sp"
-            android:textStyle="bold"/>
-
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
 

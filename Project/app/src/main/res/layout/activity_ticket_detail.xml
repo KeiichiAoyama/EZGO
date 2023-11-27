@@ -124,7 +124,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:text="13.00"
-                app:drawableTopCompat="@drawable/take_off" />
+                app:drawableTopCompat="@drawable/baseline_location_on_24" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -161,7 +161,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
                 android:text="14.15"
-                app:drawableTopCompat="@drawable/landing" />
+                app:drawableTopCompat="@drawable/outline_location_on_24" />
 
         </LinearLayout>
 

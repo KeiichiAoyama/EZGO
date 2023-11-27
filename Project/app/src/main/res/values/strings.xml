@@ -121,5 +121,7 @@
     <string name="explore_now">Explore Now...</string>
     <string name="ticket_type">Ticket Type</string>
     <string name="arrow">arrow</string>
+    <string name="logo">logo</string>
+    <string name="line2">line2</string>
 
 </resources>

@@ -8,4 +8,5 @@
     <color name="darkblue">#0B4F9E</color>
     <color name="yellow">#ffcd3c</color>
 
+    <color name="statusBarColor">#FF4081</color>
 </resources>

@@ -28,7 +28,7 @@
 
         <ImageButton
             android:contentDescription="@string/btn"
-            android:id="@+id/backPesawat"
+            android:id="@+id/backHotel"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/white_arrow_back_24" />
@@ -37,14 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="120dp"
-            android:text="@string/kereta"
+            android:text="@string/hotel"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageButton
             android:contentDescription="@string/btn"
-            android:id="@+id/searchPesawat"
+            android:id="@+id/searchHotel"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="15dp"
@@ -67,66 +67,82 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From"
+            android:text="@string/location"
             android:textSize="18sp" />
 
         <TextView
             android:gravity="start|center"
             android:textStyle="bold"
-            android:text="From"
-            android:id="@+id/btnFromPlane"
+            android:text="@string/location"
+            android:id="@+id/btnLocationHotel"
             android:drawablePadding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_stroke"
-            android:drawableStart="@drawable/take_off"
-            android:padding="10dp" />
+            android:padding="10dp"
+            app:drawableStartCompat="@drawable/baseline_location_on_24" />
 
-        <!--To-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="To"
-            android:textSize="18sp" />
-
-        <TextView
-            android:gravity="start|center"
-            android:text="To"
-            android:textStyle="bold"
-            android:id="@+id/btnToPlane"
-            android:drawablePadding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_stroke"
-            android:drawableStart="@drawable/take_off"
-            android:padding="10dp" />
         <!--Date-->
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Date"
+            android:text="@string/date"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
             android:gravity="start|center"
-            android:id="@+id/calender"
+            android:id="@+id/calenderHotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_stroke"
-            android:drawableStart="@drawable/baseline_calendar_month_24"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:text="DD/MM/YYYY"
-            android:textStyle="bold" />
-        <!--Passenger-->
+            android:text="@string/dd_mm_yyyy"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/baseline_calendar_month_24" />
+        <!--Room-->
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Passenger"
+            android:text="@string/room"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_stroke"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:contentDescription="@string/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_hotel_24" />
+
+            <Spinner
+                android:gravity="start|center"
+                android:id="@+id/room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/roundmain"
+                android:dropDownWidth="match_parent"
+                android:dropDownVerticalOffset="40dp"
+                android:popupBackground="@drawable/round_spinner"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+        <!--People-->
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/person"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -146,7 +162,7 @@
 
             <Spinner
                 android:gravity="start|center"
-                android:id="@+id/passanger"
+                android:id="@+id/person"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -158,11 +174,11 @@
         </LinearLayout>
         <!--Button-->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSearchPesawat"
+            android:id="@+id/btnSearchHotel"
             android:layout_width="340dp"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
-            android:text="Search"
+            android:text="@string/search"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="10dp" />

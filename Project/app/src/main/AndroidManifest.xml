@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".ListKotaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListActivity"
             android:exported="false" />
         <activity

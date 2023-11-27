@@ -9,9 +9,8 @@ public class TicketData {
     private String TravelTime;
     private int Price;
     private String Type;
-
-    private String TicketType;
     private String ArivTime;
+    private String TicketType;
 
     public TicketData(String id, String date, String from, String dest, String deptTime, String travelTime, int price, String type, String arivTime, String ticketType) {
         Id = id;
@@ -26,28 +25,12 @@ public class TicketData {
         TicketType = ticketType;
     }
 
-    public String getTicketType() {
-        return TicketType;
-    }
-
-    public void setTicketType(String ticketType) {
-        TicketType = ticketType;
-    }
-
     public String getId() {
         return Id;
     }
 
     public void setId(String id) {
         Id = id;
-    }
-
-    public String getArivTime() {
-        return ArivTime;
-    }
-
-    public void setArivTime(String arivTime) {
-        ArivTime = arivTime;
     }
 
     public String getDate() {
@@ -104,5 +87,21 @@ public class TicketData {
 
     public void setType(String type) {
         Type = type;
+    }
+
+    public String getArivTime() {
+        return ArivTime;
+    }
+
+    public void setArivTime(String arivTime) {
+        ArivTime = arivTime;
+    }
+
+    public String getTicketType() {
+        return TicketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        TicketType = ticketType;
     }
 }

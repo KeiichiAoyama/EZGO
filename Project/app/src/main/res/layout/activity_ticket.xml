@@ -175,7 +175,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/baseline_people_alt_24"
+                android:background="@drawable/ticket"
                 android:contentDescription="@string/icon" />
 
             <Spinner

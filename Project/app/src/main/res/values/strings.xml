@@ -128,5 +128,7 @@
     <string name="dd_mm_yyyy">DD/MM/YYYY</string>
     <string name="location">Location</string>
     <string name="img">img</string>
+    <string name="our_team">Our Team</string>
+    <string name="payment">Payment</string>
 
 </resources>

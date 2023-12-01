@@ -77,7 +77,7 @@ class DB{
         return false;
     }
 
-    public function select($getField, $table, $where = null, $limit = null){
+    public function select($getField, $table, $where = null, $limit = null, $orderby = null){
         if(is_array($where) && count($where) === 3 && !($this->isRectangular($where))){
             $operators = array('=', '>', '<', '>=', '<=');
 
@@ -110,6 +110,9 @@ class DB{
             }
             if (!is_null($limit)) {
                 $sql .= " LIMIT {$limit}";
+            }
+            if(!is_null($orderby)){
+                $sql .= " ORDER BY {$orderby}";
             }
             if(!$this->query($sql, $value)->error()){
                 return $this;

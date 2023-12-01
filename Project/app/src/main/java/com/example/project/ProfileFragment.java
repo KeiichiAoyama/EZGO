@@ -17,7 +17,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_profile,container,false);
+        View v = inflater.inflate(R.layout.activity_profile, container, false);
         account = v.findViewById(R.id.btnAccount);
         password = v.findViewById(R.id.btnPassword);
         terms = v.findViewById(R.id.btnTerms);
@@ -25,41 +25,12 @@ public class ProfileFragment extends Fragment {
         about = v.findViewById(R.id.btnAbout);
         del = v.findViewById(R.id.btnDelAcc);
         logout = v.findViewById(R.id.btnLogout);
-        account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent((getActivity()), AccountInformationActivity.class);
-                startActivity(i);
-            }
-        });
-        password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), SearchActivity.class);
-                startActivity(i);
-            }
-        });
-        terms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), TermsNCondActivity.class);
-                startActivity(i);
-            }
-        });
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(i);
-            }
-        });
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), AboutActivity.class);
-                startActivity(i);
-            }
-        });
+
+        account.setOnClickListener(view -> startActivity(new Intent(getActivity(), AccountInformationActivity.class)));
+        password.setOnClickListener(view -> startActivity(new Intent(getActivity(), SearchActivity.class)));
+        terms.setOnClickListener(view -> startActivity(new Intent(getActivity(), TermsNCondActivity.class)));
+        settings.setOnClickListener(view -> startActivity(new Intent(getActivity(), SettingsActivity.class)));
+        about.setOnClickListener(view -> startActivity(new Intent(getActivity(), AboutActivity.class)));
         return v;
     }
 }

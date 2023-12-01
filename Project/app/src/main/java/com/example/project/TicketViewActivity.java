@@ -30,7 +30,7 @@ public class TicketViewActivity extends AppCompatActivity {
                 {
                         new TicketData("B1", "5/11/2023", "item1", "item2", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Plane"),
                         new TicketData("B2", "5/11/2023", "item1", "item2", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Plane"),
-                        new TicketData("B3", "5/11/2023", "item1", "item2", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Plane"),
+                        new TicketData("B3", "5/11/2023", "item1", "item2", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Train"),
                         new TicketData("B4", "5/11/2023", "item2", "item1", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Train"),
                         new TicketData("B5", "5/11/2023", "SOC", "CGK", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Train"),
                         new TicketData("B6", "5/11/2023", "SOC", "CGK", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Train"),
@@ -45,15 +45,12 @@ public class TicketViewActivity extends AppCompatActivity {
         String fromText = i.getStringExtra("from");
         String destText = i.getStringExtra("to");
         String dateText = i.getStringExtra("date");
-        String typeText = i.getStringExtra("type");
+        String typeText = i.getStringExtra("ticktype");
         adapterViewTicket.filter(fromText, destText, dateText, typeText);
 
         fromtxt.setText(fromText);
         totxt.setText(destText);
         back.setOnClickListener(view -> onBackPressed());
-        search.setOnClickListener(view -> {
-            Intent i1 = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(i1);
-        });
+        search.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), SearchActivity.class)));
     }
 }

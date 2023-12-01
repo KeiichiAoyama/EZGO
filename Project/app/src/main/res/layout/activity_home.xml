@@ -20,12 +20,12 @@
             android:layout_height="wrap_content">
             <!--Background-->
             <ImageView
-                android:scaleType="centerCrop"
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:background="@drawable/hero_1"
+                android:layout_height="330dp"
+                android:background="@drawable/round_hero"
                 android:contentDescription="@string/bg"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -34,34 +34,44 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="end"
+                android:gravity="start"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileHome"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:elevation="5dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/profil" />
                 <TextView
                     android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Samuel Rai Indrawan"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profileHome"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:elevation="5dp"
-                    android:scaleType="centerCrop"
-                    app:shapeAppearanceOverlay="@style/circle"
-                    app:srcCompat="@drawable/profil" />
             </LinearLayout>
+
+            <TextView
+                android:fontFamily="@font/fonarto"
+                android:textSize="30sp"
+                android:id="@+id/textView"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="@string/head1"
+                android:textStyle="normal"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
             <!--Search Bar-->
             <LinearLayout
                 android:id="@+id/search"
@@ -75,7 +85,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+                app:layout_constraintTop_toBottomOf="@+id/textView">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -93,6 +103,7 @@
             </LinearLayout>
             <!--Bar Menu-->
             <LinearLayout
+
                 android:id="@+id/Lin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,12 +115,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/search">
                 <!--Pesawat-->
                 <LinearLayout
+                    android:layout_marginVertical="10dp"
                     android:id="@+id/btnTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
+                    android:background="@drawable/roundmain"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:elevation="5dp"
+                    android:padding="10dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
@@ -133,16 +148,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/ticket"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
                 <!--Hotel-->
                 <LinearLayout
+                    android:layout_marginVertical="10dp"
+                    android:padding="10dp"
                     android:id="@+id/btnHotel"
+                    android:background="@drawable/roundmain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:gravity="center"
+                    android:elevation="5dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -167,12 +186,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/hotel"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
                 <!--Tour-->
                 <LinearLayout
+                    android:layout_marginVertical="10dp"
                     android:id="@+id/btnTour"
+                    android:elevation="5dp"
+                    android:padding="10dp"
+                    android:background="@drawable/roundmain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
@@ -201,17 +224,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/tour"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
             <!--Popular Place-->
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

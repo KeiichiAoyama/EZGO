@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/backPesawatView"
+            android:id="@+id/backHotelView"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/white_arrow_back_24" />
@@ -31,13 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="120dp"
-            android:text="@string/pesawat"
+            android:text="@string/hotel"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/searchPesawatView"
+            android:id="@+id/searchHotelView"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/white_search_24" />
@@ -47,7 +47,7 @@
         android:id="@+id/viewHotel"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="75dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />

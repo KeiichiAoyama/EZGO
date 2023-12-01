@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.Objects;
+
 public class TicketDetailActivity extends AppCompatActivity {
 
     ImageButton back, search;
@@ -56,7 +58,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         order.setOnClickListener(view -> {
             Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
             Bundle b = new Bundle();
-            b.putString("id",bundle.getString("ID"));
+            b.putString("id", Objects.requireNonNull(bundle).getString("ID"));
             b.putString("price", totalprice.getText().toString());
             i.putExtras(b);
             startActivity(i);

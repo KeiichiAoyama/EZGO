@@ -29,13 +29,13 @@
 
     <!--desc-->
     <string name="bg">background</string>
-    <string name="btn">button</string>
+    <string name="btn">btn</string>
     <string name="btn_b">btnBack</string>
     <string name="btn_s">btnSearch</string>
     <string name="icon">icon</string>
     <string name="line">line</string>
 
-<!--    Text-->
+    <!--    Text-->
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="date">Date</string>
@@ -118,8 +118,17 @@
     <string name="description">Description</string>
     <string name="rp">Rp</string>
     <string name="ticket">Ticket</string>
-    <string name="explore_now">Explore Now...</string>
+    <string name="explore_now">Explore Now…</string>
     <string name="ticket_type">Ticket Type</string>
     <string name="arrow">arrow</string>
+    <string name="logo">logo</string>
+    <string name="line2">line2</string>
+    <string name="room">Room</string>
+    <string name="person">Person</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
+    <string name="location">Location</string>
+    <string name="img">img</string>
+    <string name="our_team">Our Team</string>
+    <string name="payment">Payment</string>
 
 </resources>

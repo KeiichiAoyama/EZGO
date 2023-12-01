@@ -1,27 +1,69 @@
 package com.example.project;
 
 public class HotelData {
-    private String nama;
-    private int harga;
 
-    public HotelData(String nama, int harga) {
-        this.nama = nama;
-        this.harga = harga;
+    private String Id;
+    private String Name;
+    private String Address;
+    private String RoomType;
+    private String Price;
+    private String Date;
+
+
+    public HotelData(String id, String name, String address, String roomType, String price, String date) {
+        Id = id;
+        Name = name;
+        Address = address;
+        RoomType = roomType;
+        Price = price;
+        Date = date;
     }
 
-    public String getNama() {
-        return nama;
+    public String getId() {
+        return Id;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public int getHarga() {
-        return harga;
+    public String getName() {
+        return Name;
     }
 
-    public void setHarga(int harga) {
-        this.harga = harga;
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getRoomType() {
+        return RoomType;
+    }
+
+    public void setRoomType(String roomType) {
+        RoomType = roomType;
+    }
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 }

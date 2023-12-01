@@ -4,12 +4,20 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <!-- Set status bar color -->
+        <item name="android:statusBarColor">@android:color/white</item>
+
+        <!-- Set dark icons for status bar (black icons) -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Project" parent="Base.Theme.Project" />
+
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/slide_in</item>
         <item name="android:windowExitAnimation">@anim/slide_out</item>
-
     </style>
 </resources>

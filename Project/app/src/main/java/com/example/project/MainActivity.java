@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+ //       getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_main);
 
         final LinearLayout layoutHome = findViewById(R.id.layoutHome);
@@ -38,151 +40,139 @@ public class MainActivity extends AppCompatActivity {
                         .setReorderingAllowed(true)
                                 .replace(R.id.fragmenContainer, HomeFragment.class,null)
                                         .commit();
-        layoutHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedTab != 1){
-                    getSupportFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .replace(R.id.fragmenContainer, HomeFragment.class,null)
-                            .commit();
+        layoutHome.setOnClickListener(view -> {
+            if(selectedTab != 1){
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragmenContainer, HomeFragment.class,null)
+                        .commit();
 
-                    txtExplore.setVisibility(View.GONE);
-                    txtOrder.setVisibility(View.GONE);
-                    txtProfile.setVisibility(View.GONE);
+                txtExplore.setVisibility(View.GONE);
+                txtOrder.setVisibility(View.GONE);
+                txtProfile.setVisibility(View.GONE);
 
-                    imageExplore.setImageResource(R.drawable.outline_explore_24);
-                    imageOrder.setImageResource(R.drawable.round_list_alt_24_2);
-                    imageProfile.setImageResource(R.drawable.outline_person_24);
+                imageExplore.setImageResource(R.drawable.outline_explore_24);
+                imageOrder.setImageResource(R.drawable.round_list_alt_24_2);
+                imageProfile.setImageResource(R.drawable.outline_person_24);
 
-                    layoutExplore.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutOrder.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutProfile.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutExplore.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutOrder.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutProfile.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
-                    //Select home
-                    txtHome.setVisibility(View.VISIBLE);
-                    imageHome.setImageResource(R.drawable.round_home_24);
-                    layoutHome.setBackgroundResource(R.drawable.round_back);
+                //Select home
+                txtHome.setVisibility(View.VISIBLE);
+                imageHome.setImageResource(R.drawable.round_home_24);
+                layoutHome.setBackgroundResource(R.drawable.round_back);
 
-                    //Animation
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,0.0f,Animation.RELATIVE_TO_SELF,0.0f);
-                    scaleAnimation.setDuration(200);
-                    scaleAnimation.setFillAfter(true);
-                    layoutHome.startAnimation(scaleAnimation);
+                //Animation
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,0.0f,Animation.RELATIVE_TO_SELF,0.0f);
+                scaleAnimation.setDuration(200);
+                scaleAnimation.setFillAfter(true);
+                layoutHome.startAnimation(scaleAnimation);
 
-                    selectedTab = 1;
-                }
+                selectedTab = 1;
             }
         });
 
-        layoutExplore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedTab != 2){
-                    getSupportFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .replace(R.id.fragmenContainer, ExploreFragment.class,null)
-                            .commit();
+        layoutExplore.setOnClickListener(view -> {
+            if(selectedTab != 2){
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragmenContainer, ExploreFragment.class,null)
+                        .commit();
 
-                    txtHome.setVisibility(View.GONE);
-                    txtOrder.setVisibility(View.GONE);
-                    txtProfile.setVisibility(View.GONE);
+                txtHome.setVisibility(View.GONE);
+                txtOrder.setVisibility(View.GONE);
+                txtProfile.setVisibility(View.GONE);
 
-                    imageHome.setImageResource(R.drawable.outline_home_24);
-                    imageOrder.setImageResource(R.drawable.round_list_alt_24_2);
-                    imageProfile.setImageResource(R.drawable.outline_person_24);
+                imageHome.setImageResource(R.drawable.outline_home_24);
+                imageOrder.setImageResource(R.drawable.round_list_alt_24_2);
+                imageProfile.setImageResource(R.drawable.outline_person_24);
 
-                    layoutHome.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutOrder.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutProfile.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutHome.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutOrder.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutProfile.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
-                    //Select home
-                    txtExplore.setVisibility(View.VISIBLE);
-                    imageExplore.setImageResource(R.drawable.round_explore_24);
-                    layoutExplore.setBackgroundResource(R.drawable.round_back);
+                //Select home
+                txtExplore.setVisibility(View.VISIBLE);
+                imageExplore.setImageResource(R.drawable.round_explore_24);
+                layoutExplore.setBackgroundResource(R.drawable.round_back);
 
-                    //Animation
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.0f);
-                    scaleAnimation.setDuration(200);
-                    scaleAnimation.setFillAfter(true);
-                    layoutExplore.startAnimation(scaleAnimation);
+                //Animation
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.0f);
+                scaleAnimation.setDuration(200);
+                scaleAnimation.setFillAfter(true);
+                layoutExplore.startAnimation(scaleAnimation);
 
-                    selectedTab = 2;
-                }
+                selectedTab = 2;
             }
         });
 
-        layoutOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedTab != 3){
-                    getSupportFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .replace(R.id.fragmenContainer, OrderFragment.class,null)
-                            .commit();
+        layoutOrder.setOnClickListener(view -> {
+            if(selectedTab != 3){
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragmenContainer, OrderFragment.class,null)
+                        .commit();
 
-                    txtExplore.setVisibility(View.GONE);
-                    txtHome.setVisibility(View.GONE);
-                    txtProfile.setVisibility(View.GONE);
+                txtExplore.setVisibility(View.GONE);
+                txtHome.setVisibility(View.GONE);
+                txtProfile.setVisibility(View.GONE);
 
-                    imageExplore.setImageResource(R.drawable.outline_explore_24);
-                    imageHome.setImageResource(R.drawable.outline_home_24);
-                    imageProfile.setImageResource(R.drawable.outline_person_24);
+                imageExplore.setImageResource(R.drawable.outline_explore_24);
+                imageHome.setImageResource(R.drawable.outline_home_24);
+                imageProfile.setImageResource(R.drawable.outline_person_24);
 
-                    layoutExplore.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutHome.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutProfile.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutExplore.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutHome.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutProfile.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
-                    //Select home
-                    txtOrder.setVisibility(View.VISIBLE);
-                    imageOrder.setImageResource(R.drawable.round_list_alt_24);
-                    layoutOrder.setBackgroundResource(R.drawable.round_back);
+                //Select home
+                txtOrder.setVisibility(View.VISIBLE);
+                imageOrder.setImageResource(R.drawable.round_list_alt_24);
+                layoutOrder.setBackgroundResource(R.drawable.round_back);
 
-                    //Animation
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.0f);
-                    scaleAnimation.setDuration(200);
-                    scaleAnimation.setFillAfter(true);
-                    layoutOrder.startAnimation(scaleAnimation);
+                //Animation
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.0f);
+                scaleAnimation.setDuration(200);
+                scaleAnimation.setFillAfter(true);
+                layoutOrder.startAnimation(scaleAnimation);
 
-                    selectedTab = 3;
-                }
+                selectedTab = 3;
             }
         });
 
-        layoutProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(selectedTab != 4){
-                    getSupportFragmentManager().beginTransaction()
-                            .setReorderingAllowed(true)
-                            .replace(R.id.fragmenContainer, ProfileFragment.class,null)
-                            .commit();
+        layoutProfile.setOnClickListener(view -> {
+            if(selectedTab != 4){
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragmenContainer, ProfileFragment.class,null)
+                        .commit();
 
-                    txtExplore.setVisibility(View.GONE);
-                    txtOrder.setVisibility(View.GONE);
-                    txtHome.setVisibility(View.GONE);
+                txtExplore.setVisibility(View.GONE);
+                txtOrder.setVisibility(View.GONE);
+                txtHome.setVisibility(View.GONE);
 
-                    imageExplore.setImageResource(R.drawable.outline_explore_24);
-                    imageOrder.setImageResource(R.drawable.round_list_alt_24_2);
-                    imageHome.setImageResource(R.drawable.outline_home_24);
+                imageExplore.setImageResource(R.drawable.outline_explore_24);
+                imageOrder.setImageResource(R.drawable.round_list_alt_24_2);
+                imageHome.setImageResource(R.drawable.outline_home_24);
 
-                    layoutExplore.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutOrder.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    layoutHome.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutExplore.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutOrder.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                layoutHome.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
-                    //Select home
-                    txtProfile.setVisibility(View.VISIBLE);
-                    imageProfile.setImageResource(R.drawable.round_person_24);
-                    layoutProfile.setBackgroundResource(R.drawable.round_back);
+                //Select home
+                txtProfile.setVisibility(View.VISIBLE);
+                imageProfile.setImageResource(R.drawable.round_person_24);
+                layoutProfile.setBackgroundResource(R.drawable.round_back);
 
-                    //Animation
-                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.0f);
-                    scaleAnimation.setDuration(200);
-                    scaleAnimation.setFillAfter(true);
-                    layoutProfile.startAnimation(scaleAnimation);
+                //Animation
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1.0f,Animation.RELATIVE_TO_SELF,0.0f);
+                scaleAnimation.setDuration(200);
+                scaleAnimation.setFillAfter(true);
+                layoutProfile.startAnimation(scaleAnimation);
 
-                    selectedTab = 4;
-                }
+                selectedTab = 4;
             }
         });
 

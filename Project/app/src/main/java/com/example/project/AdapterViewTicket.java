@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -36,8 +37,9 @@ public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.My
         }
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.card_ticket, parent, false);
         return new MyViewHolder(view);
     }
@@ -45,8 +47,6 @@ public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TicketData ticketData = ticket[position];
-        holder.txtFrom.setText(ticketData.getFrom());
-        holder.txtDest.setText(ticketData.getDest());
         holder.txTravelTime.setText(ticketData.getTravelTime());
         holder.txtdeptTime.setText(ticketData.getDeptTime());
         holder.txtArivTime.setText(ticketData.getArivTime());
@@ -71,15 +71,25 @@ public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.My
 
     public void filter(String fromText, String destText, String dateText, String type) {
         ArrayList<TicketData> filteredList = new ArrayList<>();
+
         for (TicketData ticketData : originalTicket) {
-            if (ticketData.getFrom().toLowerCase().contains(fromText.toLowerCase()) &&
-                    ticketData.getDest().toLowerCase().contains(destText.toLowerCase()) &&
-                    ticketData.getTicketType().toLowerCase().contains(type.toLowerCase()) &&
-                    ticketData.getDate().equals(dateText)) {
+            String from = ticketData.getFrom();
+            String dest = ticketData.getDest();
+            String ticketType = ticketData.getTicketType();
+            String date = ticketData.getDate();
+
+            boolean isFromMatch = from.toLowerCase().contains(fromText.toLowerCase());
+            boolean isDestMatch = dest.toLowerCase().contains(destText.toLowerCase());
+            boolean isTypeMatch = ticketType.toLowerCase().contains(type.toLowerCase());
+            boolean isDateMatch = date.equals(dateText);
+
+            if (isFromMatch && isDestMatch && isTypeMatch && isDateMatch) {
                 filteredList.add(ticketData);
             }
         }
+
         ticket = filteredList.toArray(new TicketData[0]);
         notifyDataSetChanged();
     }
+
 }

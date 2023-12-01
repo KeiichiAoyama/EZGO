@@ -3,6 +3,7 @@ package com.example.project;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,23 +26,24 @@ import java.util.ArrayList;
 public class ExploreFragment extends Fragment {
     RecyclerView recyclerView;
     AdapterViewExplore adapterViewExplore;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_explore,container,false);
-
-            recyclerView = v.findViewById(R.id.viewExplore);
-            ExploreData[] exploreData = new ExploreData[]
+        View v = inflater.inflate(R.layout.activity_explore, container, false);
+        v.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.white));
+        recyclerView = v.findViewById(R.id.viewExplore);
+        ExploreData[] exploreData = new ExploreData[]
                 {
-                        new ExploreData(R.drawable.rajaampat,"Raja Ampat",4,true),
-                        new ExploreData(R.drawable.maxresdefault,"Pantai",4,true),
-                        new ExploreData(R.drawable.bromo,"Bromo",4,true),
-                        new ExploreData(R.drawable.maxresdefault,"Raja Ampat",4,false),
-                        new ExploreData(R.drawable.maxresdefault,"Raja Ampat",4,true)
+                        new ExploreData(R.drawable.rajaampat, "Raja Ampat", 4, true),
+                        new ExploreData(R.drawable.maxresdefault, "Pantai", 4, true),
+                        new ExploreData(R.drawable.bromo, "Bromo", 4, true),
+                        new ExploreData(R.drawable.maxresdefault, "Raja Ampat", 4, false),
+                        new ExploreData(R.drawable.maxresdefault, "Raja Ampat", 4, true)
                 };
-            adapterViewExplore = new AdapterViewExplore(getActivity(), exploreData);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(adapterViewExplore);
+        adapterViewExplore = new AdapterViewExplore(getActivity(), exploreData);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapterViewExplore);
 
 
         return v;

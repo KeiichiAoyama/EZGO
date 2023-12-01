@@ -32,8 +32,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/payment"
+            android:layout_gravity="start"
+            android:text="@string/paymentM"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -41,77 +41,83 @@
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10dp"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/bank_transfer"/>
 
         <TextView
             android:id="@+id/btnPayment2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:background="@drawable/round_asset"
+            android:background="@drawable/round_pay"
             android:drawablePadding="10dp"
             android:elevation="5dp"
             android:gravity="start|center"
             android:padding="10dp"
-            android:text="@string/password_security"
+            android:text="@string/bca"
             android:textSize="16sp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
-            app:drawableStartCompat="@drawable/baseline_security_24" />
+            app:drawableStartCompat="@drawable/bca" />
 
         <TextView
             android:id="@+id/btnPayment3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:background="@drawable/round_asset"
+            android:background="@drawable/round_pay"
             android:drawablePadding="10dp"
             android:elevation="5dp"
             android:gravity="start|center"
             android:padding="10dp"
-            android:text="@string/password_security"
+            android:text="@string/mandiri"
             android:textSize="16sp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
-            app:drawableStartCompat="@drawable/baseline_security_24" />
+            app:drawableStartCompat="@drawable/mandiri" />
 
         <TextView
             android:id="@+id/btnPayment4"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:background="@drawable/round_asset"
+            android:background="@drawable/round_pay"
             android:drawablePadding="10dp"
             android:elevation="5dp"
             android:gravity="start|center"
             android:padding="10dp"
-            android:text="@string/password_security"
+            android:text="@string/bni"
             android:textSize="16sp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
-            app:drawableStartCompat="@drawable/baseline_security_24" />
+            app:drawableStartCompat="@drawable/bni" />
 
         <TextView
             android:id="@+id/btnPayment5"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:background="@drawable/round_asset"
+            android:background="@drawable/round_pay"
             android:drawablePadding="10dp"
             android:elevation="5dp"
             android:gravity="start|center"
             android:padding="10dp"
-            android:text="@string/password_security"
+            android:text="@string/bri"
             android:textSize="16sp"
             android:textStyle="bold"
             app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
-            app:drawableStartCompat="@drawable/baseline_security_24" />
+            app:drawableStartCompat="@drawable/bri" />
 
     </LinearLayout>
 

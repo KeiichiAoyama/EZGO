@@ -8,4 +8,14 @@
     <style name="AppTheme.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="WhiteBar" parent="Base.Theme.Project">
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <!-- Set status bar color -->
+        <item name="android:statusBarColor">@android:color/white</item>
+
+        <!-- Set dark icons for status bar (black icons) -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

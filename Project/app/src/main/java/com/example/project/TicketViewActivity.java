@@ -26,6 +26,13 @@ public class TicketViewActivity extends AppCompatActivity {
         back = findViewById(R.id.backTicketView);
         search = findViewById(R.id.searchTicketView);
 
+        Intent intent = getIntent();
+        String fromText = intent.getStringExtra("from");
+        String destText = intent.getStringExtra("to");
+        String dateText = intent.getStringExtra("date");
+        String pasText = intent.getStringExtra("pas");
+        String typeText = intent.getStringExtra("ticktype");
+
         TicketData[] ticketData = new TicketData[]
                 {
                         new TicketData("B1", "5/11/2023", "item1", "item2", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Plane"),
@@ -37,15 +44,11 @@ public class TicketViewActivity extends AppCompatActivity {
                         new TicketData("B7", "5/11/2023", "SOC", "CGK", "10.30", "1j 15mnt", 700000, "Economy", "11.45", "Train")
                 };
 
-        adapterViewTicket = new AdapterViewTicket(this, ticketData);
+        adapterViewTicket = new AdapterViewTicket(this, ticketData,pasText);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapterViewTicket);
 
-        Intent i = getIntent();
-        String fromText = i.getStringExtra("from");
-        String destText = i.getStringExtra("to");
-        String dateText = i.getStringExtra("date");
-        String typeText = i.getStringExtra("ticktype");
+
         adapterViewTicket.filter(fromText, destText, dateText, typeText);
 
         fromtxt.setText(fromText);

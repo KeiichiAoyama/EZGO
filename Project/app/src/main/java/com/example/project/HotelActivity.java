@@ -61,19 +61,23 @@ public class HotelActivity extends AppCompatActivity implements AdapterView.OnIt
             dialog.show();
 
         });
-        Intent intent = getIntent();
-        if(intent != null){
-            btnLocation.setText(intent.getStringExtra("kota"));
-        }
+
         //btn
-        btnLocation.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), ListActivity.class)));
+        btnLocation.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), KotaActivity.class);
+            i.putExtra("Type", "Hotel");
+            startActivity(i);
+        });
+        Intent intent = getIntent();
+        String kota = intent.getStringExtra("kota");
+        btnLocation.setText(kota != null ? kota : "Location");
 
         btnHotel.setOnClickListener(view -> {
             String loc = btnLocation.getText().toString();
             String date = calender.getText().toString();
             String per = person.getSelectedItem().toString();
             String rooms = room.getSelectedItem().toString();
-            Intent i = new Intent(getApplicationContext(), TicketViewActivity.class);
+            Intent i = new Intent(getApplicationContext(), HotelViewActivity.class);
             i.putExtra("loc", loc);
             i.putExtra("date", date);
             i.putExtra("room", rooms);

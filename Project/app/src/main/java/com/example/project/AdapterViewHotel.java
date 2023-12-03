@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -43,8 +45,14 @@ public class AdapterViewHotel extends RecyclerView.Adapter<AdapterViewHotel.MyVi
     @Override
     public void onBindViewHolder(AdapterViewHotel.MyViewHolder holder, int position) {
         HotelData hotelData = hotel[position];
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String price = "Rp "+decimalFormat.format(hotelData.getPrice())+"/Pax";
         holder.txtNama.setText(hotelData.getName());
-        //holder.txtPrice.setText(String.valueOf(hotelData.getHarga()));
+        holder.txtPrice.setText(price);
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(context, HotelDetailActivity.class);
+            context.startActivity(i);
+        });
     }
 
     @Override

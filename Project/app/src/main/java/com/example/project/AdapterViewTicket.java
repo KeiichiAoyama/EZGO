@@ -11,21 +11,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.MyViewHolder> {
     final Context context;
+    private final String pass;
     final TicketData[] originalTicket;
     private TicketData[] ticket;
 
-    public AdapterViewTicket(Context context, TicketData[] ticket) {
+    public AdapterViewTicket(Context context, TicketData[] ticket, String pass) {
         this.context = context;
         this.originalTicket = ticket.clone();
         this.ticket = ticket;
+        this.pass = pass;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtFrom, txtDest, txtPrice, txTravelTime, txtDate, txtArivTime, txtdeptTime, txtType;
+        public TextView txtPrice, txTravelTime, txtDate, txtArivTime, txtdeptTime, txtType;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -47,9 +50,12 @@ public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TicketData ticketData = ticket[position];
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String price = "Rp "+decimalFormat.format(ticketData.getPrice())+"/Pax";
         holder.txTravelTime.setText(ticketData.getTravelTime());
         holder.txtdeptTime.setText(ticketData.getDeptTime());
         holder.txtArivTime.setText(ticketData.getArivTime());
+        holder.txtPrice.setText(price);
         holder.itemView.setOnClickListener(view -> {
             Intent i = new Intent(context, TicketDetailActivity.class);
             Bundle bundle = new Bundle();
@@ -59,6 +65,8 @@ public class AdapterViewTicket extends RecyclerView.Adapter<AdapterViewTicket.My
             bundle.putString("TravelTime", ticketData.getTravelTime());
             bundle.putString("DeptTime", ticketData.getDeptTime());
             bundle.putString("ArivTime", ticketData.getArivTime());
+            bundle.putInt("Price",ticketData.getPrice());
+            bundle.putString("Qty",pass);
             i.putExtras(bundle);
             context.startActivity(i);
         });

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -73,12 +72,14 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
 
         //btn
         btnFrom.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), KotaActivity.class);
+            intent.putExtra("Type","Ticket");
             intent.putExtra("mode", "asal");
             startActivityForResult(intent, REQUEST_CODE);
         });
         btnTo.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), KotaActivity.class);
+            intent.putExtra("Type","Ticket");
             intent.putExtra("mode", "tujuan");
             startActivityForResult(intent, REQUEST_CODE);
         });

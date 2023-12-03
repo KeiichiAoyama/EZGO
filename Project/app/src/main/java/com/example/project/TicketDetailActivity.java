@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class TicketDetailActivity extends AppCompatActivity {
@@ -25,7 +26,6 @@ public class TicketDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_detail);
         back = findViewById(R.id.backDetailTicket);
-        search = findViewById(R.id.searchDetailTicket);
         iconPesawat = findViewById(R.id.iconDetailTicket);
         from = findViewById(R.id.txtFromDetail);
         to = findViewById(R.id.txtToDetail);
@@ -41,21 +41,29 @@ public class TicketDetailActivity extends AppCompatActivity {
         totalprice = findViewById(R.id.totalPrice);
         order = findViewById(R.id.orderTicket);
 
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String ID = bundle.getString("ID");
+            int price = bundle.getInt("Price");
+            int Fee = 2000;
+            int quanty = Integer.parseInt(bundle.getString("Qty"));
+            int tPrice = price*quanty + Fee;
             from.setText(bundle.getString("From"));
             to.setText(bundle.getString("Dest"));
             travelTime.setText(bundle.getString("TravelTime"));
             departTime.setText(bundle.getString("DeptTime"));
             arivTime.setText(bundle.getString("ArivTime"));
+            ticketprice.setText(decimalFormat.format(bundle.getInt("Price")));
+            qty.setText(bundle.getString("Qty"));
+            addfee.setText(decimalFormat.format(Fee));
+            totalprice.setText(decimalFormat.format(tPrice));
         }
 
         back.setOnClickListener(view -> onBackPressed());
-        search.setOnClickListener(view -> {
-            Intent i = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(i);
-        });
+
         order.setOnClickListener(view -> {
             Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
             Bundle b = new Bundle();

@@ -23,10 +23,7 @@
             android:exported="false"
             android:theme="@style/WhiteBar" />
         <activity
-            android:name=".ListKotaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ListActivity"
+            android:name=".KotaActivity"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"

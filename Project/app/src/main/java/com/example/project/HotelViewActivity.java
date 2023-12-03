@@ -23,7 +23,7 @@ public class HotelViewActivity extends AppCompatActivity {
 
         HotelData[] hotelData = new HotelData[]
                 {
-                        new HotelData("A1","Episode Gading Serpong","Gading Serpong","P","1.000.000" ,"5/11/2023")
+                        new HotelData("A1","Episode Gading Serpong","item1","P",1000000 ,"5/11/2023")
                 };
 
         adapterViewHotel = new AdapterViewHotel(this, hotelData);

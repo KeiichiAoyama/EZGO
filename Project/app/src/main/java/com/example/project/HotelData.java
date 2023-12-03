@@ -6,11 +6,11 @@ public class HotelData {
     private String Name;
     private String Address;
     private String RoomType;
-    private String Price;
+    private int Price;
     private String Date;
 
 
-    public HotelData(String id, String name, String address, String roomType, String price, String date) {
+    public HotelData(String id, String name, String address, String roomType, int price, String date) {
         Id = id;
         Name = name;
         Address = address;
@@ -51,11 +51,11 @@ public class HotelData {
         RoomType = roomType;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         Price = price;
     }
 

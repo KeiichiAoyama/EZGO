@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,53 +8,60 @@
     tools:context=".TicketDetailActivity">
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="330dp"
         android:background="@drawable/roundedshape"
-        android:contentDescription="@string/bg" />
+        android:contentDescription="@string/bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/linearLayout9"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/backDetailTicket"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/white_arrow_back_24"
+                android:contentDescription="@string/btn_b" />
 
-        <ImageButton
-            android:id="@+id/backDetailTicket"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/white_arrow_back_24"
-            android:contentDescription="@string/btn_b" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="120dp"
+                android:text="@string/ticket"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="120dp"
-            android:text="@string/pesawat"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/searchDetailTicket"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/white_search_24"
-            android:contentDescription="@string/btn_s" />
-    </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="370dp"
         android:layout_height="205dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundmain"
         android:elevation="5dp"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,8 +71,9 @@
             android:padding="10dp">
 
             <LinearLayout
-                android:layout_width="220dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 android:orientation="horizontal">
 
                 <TextView
@@ -98,9 +106,11 @@
             </LinearLayout>
 
             <TextView
+
                 android:id="@+id/txtDateDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:text="Min, 29 Okt 2023" />
         </LinearLayout>
 
@@ -204,39 +214,18 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundmain"
         android:elevation="5dp"
         android:orientation="vertical"
-        android:padding="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/description"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/information"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem" />
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <TextView
             android:layout_width="wrap_content"
@@ -319,6 +308,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:text=""
                     android:id="@+id/ticketPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -326,18 +316,21 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:text=""
                     android:id="@+id/ticketQty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:text=""
                     android:id="@+id/addFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:text=""
                     android:id="@+id/totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -347,15 +340,20 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/orderTicket"
-            android:layout_width="320dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="@string/order_now"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:backgroundTint="@color/blue" />
+
     </LinearLayout>
-</RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/orderTicket"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:text="@string/order_now"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -136,5 +136,11 @@
     <string name="bni">BNI</string>
     <string name="bri">BRI</string>
     <string name="bank_transfer">Bank Transfer</string>
+    <string name="_00">00</string>
+    <string name="titik2">:</string>
+    <string name="ezgo_travel">EZGO Travel</string>
+    <string name="copy">Copy</string>
+    <string name="transfer_amount">Transfer Amount</string>
+    <string name="transfer_done">Transfer Done</string>
 
 </resources>

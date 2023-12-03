@@ -52,6 +52,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
         amount = b.getString("price");
         txtBank.setText(bank);
         txtRek.setText(noRek);
+        txtAmount.setText(amount);
         imgBank.setImageResource(img);
 
         new CountDownTimer(duration * 1000L, 1000) {
@@ -82,20 +83,17 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         btnDone.setOnClickListener(view -> {
             pb.setVisibility(LinearLayout.VISIBLE);
-
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     pb.setVisibility(LinearLayout.INVISIBLE);
-                    // Kode yang akan dijalankan setelah waktu tertentu (delay)
                     Intent i = new Intent(getApplicationContext(), PaymentSuccessActivity.class);
+                    i.putExtra("price", amount);
+                    i.putExtra("norek",noRek);
                     startActivity(i);
-                    finish(); // Opsional, untuk menutup activity saat ini jika diinginkan
+                    finish();
                 }
-            }, 3000); // Delay dalam milidetik (dalam contoh ini, 2000ms atau 2 detik)
-
-
+            }, 3000);
         });
 
         copyButtonRek.setOnClickListener(view -> {

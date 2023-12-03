@@ -523,14 +523,51 @@ class order{
         $vals = array($city, $date, $room);
         $where = array($cols, $operator, $vals);
 
-        $htl = $db->select('*', 'hotel', $where);
+        $htls = $db->select('*', 'hotel', $where);
 
-        if(count($htl) > 0){
-            $imgPath = $htl[0]->hImage;
-            $fullPath = "images/".$imgPath;
-            $htl[0]->hImage = $fullPath;
+        if(count($htls) > 0){
+            foreach($htls as $htl){
+                $imgPath = $htl->hImage;
+                $fullPath = "images/".$imgPath;
+                $htl->hImage = $fullPath;
+            }
 
-            $response = ['Success'=> True, 'hotel' => $htl[0]];
+            $response = ['Success'=> True, 'hotel' => $htls];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    public function searchTicket(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $from = $request['tcFrom'];
+        $to = $request['tcDestination'];
+        $date = $request['tcDate'];
+        $seat = $request['tcSeat'];
+        $type = $request['tcType'];
+
+        $cols = array('tcFrom', 'tcDestination', 'tcDate', 'tcSeat', 'tcType');
+        $operator = array('=', '=', '=', '=', '=');
+        $vals = array($from, $to, $date, $seat, $type);
+        $where = array($cols, $operator, $vals);
+
+        $tixs = $db->select('*', 'tickets', $where);
+
+        if(count($tixs) > 0){
+            foreach($tixs as $tix){
+                $imgPath = $tix->tcImage;
+                $fullPath = "images/".$imgPath;
+                $tix->tcImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tickets' => $tixs];
             header('Content-Type: application/json');
             echo json_encode($response);
         }else{

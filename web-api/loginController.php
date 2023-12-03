@@ -49,10 +49,12 @@ class login{
 
         $request = json_decode($json, true);
         $uid = $request['userID'];
-        $name = $request['name'];
+        $name = $request['uName'];
+        $mail = $request['uEmail'];
+        $telp = $request['uPhone'];
 
-        $fields = array('userID', 'uName');
-        $values = array($uid, $name);
+        $fields = array('userID', 'uName', 'uEmail', 'uPhone');
+        $values = array($uid, $name, $mail, $telp);
         $assoc_fields = array_combine($fields, $values);
 
         if($db->insert('users', $assoc_fields)){

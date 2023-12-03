@@ -508,6 +508,37 @@ class order{
             echo json_encode($response);
         }
     }
+
+    public function searchHotel(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $city = $request['city'];
+        $date = $request['date'];
+        $room = $request['roomType'];
+
+        $cols = array('cityID', 'hDate', 'hRoomType');
+        $operator = array('=', '=', '=');
+        $vals = array($city, $date, $room);
+        $where = array($cols, $operator, $vals);
+
+        $htl = $db->select('*', 'hotel', $where);
+
+        if(count($htl) > 0){
+            $imgPath = $htl[0]->hImage;
+            $fullPath = "images/".$imgPath;
+            $htl[0]->hImage = $fullPath;
+
+            $response = ['Success'=> True, 'hotel' => $htl[0]];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
 }
 
 

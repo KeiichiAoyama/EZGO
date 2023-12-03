@@ -539,6 +539,64 @@ class order{
             echo json_encode($response);
         }
     }
+
+    public function productSearch(){
+        $db = DB::getInstance();
+
+        $tixs = $db->select('*', 'tickets')->getResult();
+
+        if(count($tixs) > 0){
+            foreach($tixs as $tix){
+                $imgPath = $tix->tcImage;
+                $fullPath = "images/".$imgPath;
+                $tix->tcImage = $fullPath;
+            }
+
+            $htls = $db->select('*', 'hotel')->getResult();
+
+            if(count($htls) > 0){
+                foreach($htls as $htl){
+                    $imgPath = $htl->hImage;
+                    $fullPath = "images/".$imgPath;
+                    $htl->hImage = $fullPath;
+                }
+
+                $trps = $db->select('*', 'tour_package')->getResult();
+
+                if(count($trps) > 0){
+                    foreach($trps as $trp){
+                        $imgPath = $trp->tpImage;
+                        $fullPath = "images/".$imgPath;
+                        $trp->tpImage = $fullPath;
+                    }
+
+                    $cities = $db->select('*', 'city')->getResult();
+                    
+                    if(count($cities) > 0){
+                        $response = ['Success'=> True, 'tickets' => $tixs, 'hotel' => $htls, 'tours' => $trps, 'cities' => $cities];
+                        header('Content-Type: application/json');
+                        echo json_encode($response);
+                    }else{
+                        $response = ['Success'=> False];
+                        header('Content-Type: application/json');
+                        echo json_encode($response);
+                    }
+                }else{
+                    $response = ['Success'=> False];
+                    header('Content-Type: application/json');
+                    echo json_encode($response);
+                }
+            }else{
+                $response = ['Success'=> False];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
 }
 
 

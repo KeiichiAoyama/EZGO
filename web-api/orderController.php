@@ -577,6 +577,39 @@ class order{
         }
     }
 
+    public function searchTour(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $city = $request['cityID'];
+        $date = $request['tpDate'];
+        $type = $request['tpSlot'];
+
+        $cols = array('cityID', 'tpDate', 'tpSlot');
+        $operator = array('=', '=', '=');
+        $vals = array($city, $date, $type);
+        $where = array($cols, $operator, $vals);
+
+        $trps = $db->select('*', 'trps', $where);
+
+        if(count($trps) > 0){
+            foreach($trps as $trp){
+                $imgPath = $trp->tpImage;
+                $fullPath = "images/".$imgPath;
+                $trp->tpImage = $fullPath;
+            }
+
+            $response = ['Success'=> True, 'tours' => $trps];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
     public function productSearch(){
         $db = DB::getInstance();
 

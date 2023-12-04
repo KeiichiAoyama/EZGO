@@ -3,6 +3,7 @@ package com.example.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +14,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.google.android.material.button.MaterialButton;
@@ -23,7 +23,6 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -53,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
             Gson gson = new Gson();
 
             Map<String, Object> params = new HashMap<>();
-            params.put("key1", username);
-            params.put("key2", pass);
+            params.put("userID", username);
+            params.put("uPassword", pass);
 
             String requestBody = gson.toJson(params);
 
@@ -63,13 +62,20 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            com.example.project.Response resp = gson.fromJson(response.toString(), com.example.project.Response.class);
+                            ResponseOneObject<User> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObject<User>>() {}.getType());
                             boolean success = resp.isSuccess();
+                            User user = resp.getData();
 
                             if (success == true) {
                                 if (errLogin != null) {
                                     errLogin.setVisibility(View.GONE);
                                 }
+
+                                SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("user", user.toJson());
+                                editor.apply();
+
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                             } else {
@@ -82,12 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            // Handle errors
-                            Log.e("YourApp", "Error: " + error.toString());
+                            Log.e("Ezgo", "Error: " + error.toString());
                         }
                     });
             queue.add(jsonObjectRequest);
-            
+
             inputUsername.setText("");
             inputPass.setText("");
         });

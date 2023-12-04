@@ -4,52 +4,91 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextInputEditText inputPass,inputEmail;
+    private TextInputEditText inputPass,inputUsername;
 
     private TextView errLogin;
 
-    private String serverPass, serverEmail, email, pass;
+    private String username, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        serverPass = "B";
-        serverEmail = "A";
         MaterialButton btnlogin = (MaterialButton) findViewById(R.id.btnLogin);
-        inputEmail = (TextInputEditText)findViewById(R.id.inputEmail);
+        inputUsername = (TextInputEditText)findViewById(R.id.inputUsername);
         inputPass = (TextInputEditText)findViewById(R.id.inputPass);
         errLogin = (TextView)findViewById(R.id.errLogin);
         btnlogin.setOnClickListener(view -> {
-            email = Objects.requireNonNull(inputEmail.getText()).toString();
+            username = Objects.requireNonNull(inputUsername.getText()).toString();
             pass = Objects.requireNonNull(inputPass.getText()).toString();
-            if (email.equalsIgnoreCase(serverEmail) && pass.equalsIgnoreCase(serverPass)) {
-                if (errLogin != null) {
-                    errLogin.setVisibility(View.GONE);
-                }
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-            } else {
-                if (errLogin != null) {
-                    errLogin.setVisibility(View.VISIBLE);
-                }
-            }
-            inputEmail.setText("");
+
+            String url = "http://localhost/web-api/router.php?controller=loginController&method=login";
+            RequestQueue queue = Volley.newRequestQueue(this);
+            Gson gson = new Gson();
+
+            Map<String, Object> params = new HashMap<>();
+            params.put("key1", username);
+            params.put("key2", pass);
+
+            String requestBody = gson.toJson(params);
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
+                    new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            com.example.project.Response resp = gson.fromJson(response.toString(), com.example.project.Response.class);
+                            boolean success = resp.isSuccess();
+
+                            if (success == true) {
+                                if (errLogin != null) {
+                                    errLogin.setVisibility(View.GONE);
+                                }
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            } else {
+                                if (errLogin != null) {
+                                    errLogin.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Handle errors
+                            Log.e("YourApp", "Error: " + error.toString());
+                        }
+                    });
+            queue.add(jsonObjectRequest);
+            
+            inputUsername.setText("");
             inputPass.setText("");
         });
 

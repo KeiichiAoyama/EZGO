@@ -43,6 +43,33 @@ class login{
         }
     }
 
+    public function login(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $uid = $request['userID'];
+        $pw = $request['uPassword'];
+
+        $where = array('userID', '=', $uid);
+        $user = $db->select('*', 'users', $where)->getResult();
+        if(count($user) > 0){
+            if(strcasecmp($pw, $user[0]->uPassword) == 0){
+                $response = ['Success' => True];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }else{
+                $response = ['Success' => False];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }else{
+            $response = ['Success' => False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
     public function createAccount(){
         $db = DB::getInstance();
         $json = file_get_contents('php://input');

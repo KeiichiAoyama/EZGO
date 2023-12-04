@@ -121,6 +121,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCreateAcc"
             android:layout_width="340dp"
             android:layout_height="55dp"
             android:layout_marginTop="40dp"

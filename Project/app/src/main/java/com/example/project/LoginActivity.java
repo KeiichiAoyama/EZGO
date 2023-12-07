@@ -55,8 +55,6 @@ public class LoginActivity extends AppCompatActivity {
             params.put("userID", username);
             params.put("uPassword", pass);
 
-            String requestBody = gson.toJson(params);
-
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
                     new JSONObject(params),
                     new Response.Listener<JSONObject>() {

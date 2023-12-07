@@ -5,15 +5,24 @@ import java.time.LocalDate;
 import com.google.gson.Gson;
 
 public class User {
-    public String id;
-    public String name;
-    public String address;
-    public String phone;
-    public String email;
-    public LocalDate bday;
-    public String pfp;
+    public String userID;
+    public String uName;
+    public String uPassword;
+    public String uAddress;
+    public String uPhone;
+    public String uEmail;
+    public LocalDate uBirthdate;
+    public String uProfilePicture;
 
     public User(){}
+
+    public User(String id, String password, String name, String phone, String email){
+        this.userID = id;
+        this.uPassword = password;
+        this.uName = name;
+        this.uPhone = phone;
+        this.uEmail = email;
+    }
 
     public String toJson() {
         return new Gson().toJson(this);

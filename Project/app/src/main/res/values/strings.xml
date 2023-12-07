@@ -10,6 +10,7 @@
     <string name="email">Email</string>
     <string name="pass">Password</string>
     <string name="username">Username</string>
+    <string name="name">Name</string>
     <string name="forgot">Forgot your password?</string>
     <string name="donthave">Don\'t have an account?</string>
     <string name="landingh1">Lets explore the world</string>

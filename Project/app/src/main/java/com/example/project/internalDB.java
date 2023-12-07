@@ -44,27 +44,27 @@ public class internalDB extends SQLiteOpenHelper {
 
     private User cursorToUser(Cursor cursor){
         User user = new User();
-        user.id = cursor.getString(0);
-        user.name = cursor.getString(1);
-        user.address = cursor.getString(2);
-        user.phone = cursor.getString(3);
-        user.email = cursor.getString(4);
+        user.userID = cursor.getString(0);
+        user.uName = cursor.getString(1);
+        user.uAddress = cursor.getString(2);
+        user.uPhone = cursor.getString(3);
+        user.uEmail = cursor.getString(4);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            user.bday = LocalDate.parse(cursor.getString(5));
+            user.uBirthdate = LocalDate.parse(cursor.getString(5));
         }
-        user.pfp = cursor.getString(6);
+        user.uProfilePicture = cursor.getString(6);
         return user;
     }
 
     public void createUser(User user){
         ContentValues values = new ContentValues();
-        values.put("userID", user.id);
-        values.put("uName", user.name);
-        values.put("uAddress", user.address);
-        values.put("uPhone", user.phone);
-        values.put("uEmail", user.email);
-        values.put("uBirthdate", user.bday.toString());
-        values.put("uProfilePicture", user.pfp);
+        values.put("userID", user.userID);
+        values.put("uName", user.uName);
+        values.put("uAddress", user.uAddress);
+        values.put("uPhone", user.uPhone);
+        values.put("uEmail", user.uEmail);
+        values.put("uBirthdate", user.uBirthdate.toString());
+        values.put("uProfilePicture", user.uProfilePicture);
         db.insert("user", null, values);
     }
 
@@ -77,20 +77,20 @@ public class internalDB extends SQLiteOpenHelper {
     }
 
     public void updateUser(User user){
-        String filter = "userID="+user.id;
+        String filter = "userID="+user.userID;
         ContentValues values = new ContentValues();
-        values.put("userID", user.id);
-        values.put("uName", user.name);
-        values.put("uAddress", user.address);
-        values.put("uPhone", user.phone);
-        values.put("uEmail", user.email);
-        values.put("uBirthdate", user.bday.toString());
-        values.put("uProfilePicture", user.pfp);
+        values.put("userID", user.userID);
+        values.put("uName", user.uName);
+        values.put("uAddress", user.uAddress);
+        values.put("uPhone", user.uPhone);
+        values.put("uEmail", user.uEmail);
+        values.put("uBirthdate", user.uBirthdate.toString());
+        values.put("uProfilePicture", user.uProfilePicture);
         db.update("user", values, filter, null);
     }
 
     public void deleteUser(User user){
-        String filter = "userID="+user.id;
+        String filter = "userID="+user.userID;
         db.delete("user", filter, null);
     }
 

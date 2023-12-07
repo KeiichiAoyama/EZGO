@@ -69,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                                     errLogin.setVisibility(View.GONE);
                                 }
 
+                                internalDB db = new internalDB(LoginActivity.this);
+                                db.createUser(user);
+
                                 SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putString("user", user.toJson());

@@ -71,6 +71,9 @@ public class SingupActivity extends AppCompatActivity {
 
                                 User user = new User(username, pass, name, email, telp);
 
+                                internalDB db = new internalDB(SingupActivity.this);
+                                db.createUser(user);
+
                                 SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putString("user", user.toJson());

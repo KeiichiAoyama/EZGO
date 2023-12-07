@@ -1,8 +1,5 @@
 <?php
-
-namespace App\Controller;
-
-use App\Tools\DB;
+include_once 'database.php';
 
 class login{
     public function checkID(){
@@ -85,12 +82,18 @@ class login{
         $values = array($uid, $pw, $name, $mail, $telp);
         $assoc_fields = array_combine($fields, $values);
 
-        if($db->insert('users', $assoc_fields)){
-            $response = ['Success'=> True];
-            header('Content-Type: application/json');
-            echo json_encode($response);
-        }else{
-            $response = ['Success'=> False];
+        try{
+            if($db->insert('users', $assoc_fields)){
+                $response = ['Success'=> True, 'Message' => 1];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }else{
+                $response = ['Success'=> False, 'Message' => 2];
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }catch(Exception $e){
+            $response = ['Success'=> False, 'Message' => 3];
             header('Content-Type: application/json');
             echo json_encode($response);
         }

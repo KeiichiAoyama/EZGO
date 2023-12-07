@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,6 +22,8 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -46,11 +49,13 @@ public class SingupActivity extends AppCompatActivity {
             email = inputEmail.getText().toString();
             telp = inputTelp.getText().toString();
 
-            String url = "http://localhost/web-api/router.php?controller=loginController&method=createAccount";
+            String url = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
             RequestQueue queue = Volley.newRequestQueue(this);
             Gson gson = new Gson();
 
             Map<String, Object> params = new HashMap<>();
+            params.put("controller", "login");
+            params.put("method", "createAccount");
             params.put("userID", username);
             params.put("uPassword", pass);
             params.put("uName", name);
@@ -62,22 +67,32 @@ public class SingupActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            boolean success = gson.fromJson(response.toString(), Boolean.class);
+                            ResponseMessage resp = gson.fromJson(response.toString(), ResponseMessage.class);
+                            boolean success = resp.isSuccess();
+                            Log.d("Ezgo", "Response: " + Boolean.toString(success));
 
                             if (success == true) {
                                 /*if (errLogin != null) {
                                     errLogin.setVisibility(View.GONE);
                                 }*/
+                                try {
+                                    User user = new User(username, pass, name, email, telp);
+                                    Log.d("Ezgo", "user: " + user.userID);
 
-                                User user = new User(username, pass, name, email, telp);
+                                    internalDB db = new internalDB(SingupActivity.this);
+                                    db.createUser(user);
 
-                                internalDB db = new internalDB(SingupActivity.this);
-                                db.createUser(user);
+                                    Log.d("Ezgo", "SQLite created");
 
-                                SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("user", user.toJson());
-                                editor.apply();
+                                    SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString("user", user.toJson());
+                                    editor.apply();
+
+                                    Log.d("Ezgo", "Preferences created");
+                                }catch (Exception e){
+                                    Log.e("Ezgo", "Error: " + e);
+                                }
 
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
@@ -92,6 +107,8 @@ public class SingupActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.e("Ezgo", "Error: " + error.toString());
+                            String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                            Log.e("Ezgo", "Response: " + responseBody);
                         }
                     });
             queue.add(jsonObjectRequest);

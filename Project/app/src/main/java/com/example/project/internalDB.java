@@ -20,6 +20,7 @@ public class internalDB extends SQLiteOpenHelper {
 
     public internalDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        db = getWritableDatabase();
     }
 
     @Override
@@ -50,7 +51,11 @@ public class internalDB extends SQLiteOpenHelper {
         user.uPhone = cursor.getString(3);
         user.uEmail = cursor.getString(4);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            user.uBirthdate = LocalDate.parse(cursor.getString(5));
+            String birthdateString = cursor.getString(5);
+
+            if (birthdateString != null) {
+                user.uBirthdate = LocalDate.parse(birthdateString);
+            }
         }
         user.uProfilePicture = cursor.getString(6);
         return user;
@@ -63,16 +68,18 @@ public class internalDB extends SQLiteOpenHelper {
         values.put("uAddress", user.uAddress);
         values.put("uPhone", user.uPhone);
         values.put("uEmail", user.uEmail);
-        values.put("uBirthdate", user.uBirthdate.toString());
+        values.put("uBirthdate", user.uBirthdate != null ? user.uBirthdate.toString() : null);
         values.put("uProfilePicture", user.uProfilePicture);
         db.insert("user", null, values);
     }
 
     public User getUser(){
+        User user = new User();
         Cursor cursor = db.query("user", allColumns, null, null, null, null, null);
-        cursor.moveToFirst();
-        User user = cursorToUser(cursor);
-        cursor.close();
+        if (cursor != null && cursor.moveToFirst()) {
+            user = cursorToUser(cursor);
+            cursor.close();
+        }
         return user;
     }
 
@@ -94,16 +101,25 @@ public class internalDB extends SQLiteOpenHelper {
         db.delete("user", filter, null);
     }
 
-    public boolean checkUserExist(){
+    public boolean checkUserExist() {
         String query = "SELECT COUNT(*) FROM user";
         Cursor cursor = db.rawQuery(query, null);
-        boolean ret = true;
-        if (cursor != null) {
-            cursor.moveToFirst();
+        boolean ret = false;
+
+        if (cursor != null && cursor.moveToFirst()) {
             int count = cursor.getInt(0);
-            ret = count == 0;
+            ret = count > 0;
             cursor.close();
         }
+
         return ret;
+    }
+
+    @Override
+    public synchronized void close() {
+        if (db != null) {
+            db.close();
+            super.close();
+        }
     }
 }

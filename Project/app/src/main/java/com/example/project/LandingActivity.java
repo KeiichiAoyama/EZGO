@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -18,8 +19,11 @@ public class LandingActivity extends AppCompatActivity {
         internalDB db = new internalDB(this);
         boolean check = db.checkUserExist();
 
-        if(check){
+        Toast.makeText(this, Boolean.toString(check), Toast.LENGTH_SHORT).show();
+
+        if(check == true){
             User user = db.getUser();
+            Toast.makeText(this, user.userID, Toast.LENGTH_SHORT).show();
             SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("user", user.toJson());

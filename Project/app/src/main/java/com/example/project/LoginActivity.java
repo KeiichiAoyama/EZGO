@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             username = Objects.requireNonNull(inputUsername.getText()).toString();
             pass = Objects.requireNonNull(inputPass.getText()).toString();
 
-            String url = "http://localhost/web-api/router.php?controller=loginController&method=login";
+            String url = "http://172.21.219.143:8000/web-api/router.php?controller=loginController&method=login";
             RequestQueue queue = Volley.newRequestQueue(this);
             Gson gson = new Gson();
 
@@ -60,9 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            ResponseOneObject<User> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObject<User>>() {}.getType());
+                            ResponseMessage resp = gson.fromJson(response.toString(), ResponseMessage.class);
                             boolean success = resp.isSuccess();
-                            User user = resp.getData();
+                            //User user = resp.getMessage();
 
                             if (success == true) {
                                 if (errLogin != null) {
@@ -70,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 internalDB db = new internalDB(LoginActivity.this);
-                                db.createUser(user);
+                                //db.createUser(user);
 
                                 SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("user", user.toJson());
+                                //editor.putString("user", user.toJson());
                                 editor.apply();
 
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);

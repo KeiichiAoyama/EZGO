@@ -1,36 +1,40 @@
 <?php
-
-use App\Tools\NotFound;
-
-$nf = new NotFound();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $request = $_REQUEST;
+    $json = file_get_contents("php://input");
+    $request = json_decode($json, true);
 
     if (isset($request['controller']) && isset($request['method'])) {
         $controllerClass = $request['controller'];
         $controllerMethod = $request['method'];
 
-        $controllerClassName = ucfirst($controllerClass) . 'Controller';
+        $controllerClassName = ($controllerClass) . 'Controller';
         $controllerFile = $controllerClassName . '.php';
 
         if (file_exists($controllerFile)) {
             include $controllerFile;
-            $controller = new $controllerClassName();
+            $controller = new $controllerClass();
 
             if (method_exists($controller, $controllerMethod)) {
                 $controller->$controllerMethod();
             } else {
-                $nf->error("Method Not Found!");
+                $response = ['Success' => False, 'Message' => 1];
+                header('Content-Type: application/json');
+                echo json_encode($response);
             }
         } else {
-            $nf->error("Controller Not Found!");
+            $response = ['Success' => False, 'Message' => 2];
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }
     } else {
-        $nf->error("Controller and Method parameters are required in the request.");
+        $response = ['Success' => False, 'Message' => 3];
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 } else {
-    $nf->error("Unsupported HTTP Method!");
+    $response = ['Success' => False, 'Message' => 4];
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }
 
 

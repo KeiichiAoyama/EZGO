@@ -23,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -47,11 +48,13 @@ public class LoginActivity extends AppCompatActivity {
             username = Objects.requireNonNull(inputUsername.getText()).toString();
             pass = Objects.requireNonNull(inputPass.getText()).toString();
 
-            String url = "http://172.21.219.143:8000/web-api/router.php?controller=loginController&method=login";
+            String url = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
             RequestQueue queue = Volley.newRequestQueue(this);
             Gson gson = new Gson();
 
             Map<String, Object> params = new HashMap<>();
+            params.put("controller", "login");
+            params.put("method", "login");
             params.put("userID", username);
             params.put("uPassword", pass);
 
@@ -60,22 +63,30 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            ResponseMessage resp = gson.fromJson(response.toString(), ResponseMessage.class);
+                            ResponseOneObject<User> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObject<User>>() {}.getType());
                             boolean success = resp.isSuccess();
-                            //User user = resp.getMessage();
+                            User user = resp.getData();
+                            Log.d("Ezgo", "Response: " + Boolean.toString(success));
 
                             if (success == true) {
                                 if (errLogin != null) {
                                     errLogin.setVisibility(View.GONE);
                                 }
+                                try {
+                                    internalDB db = new internalDB(LoginActivity.this);
+                                    db.createUser(user);
 
-                                internalDB db = new internalDB(LoginActivity.this);
-                                //db.createUser(user);
+                                    Log.d("Ezgo", "SQLite created");
 
-                                SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                //editor.putString("user", user.toJson());
-                                editor.apply();
+                                    SharedPreferences preferences = getSharedPreferences("ezgo", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString("user", user.toJson());
+                                    editor.apply();
+
+                                    Log.d("Ezgo", "Preferences created");
+                                }catch (Exception e){
+                                    Log.e("Ezgo", "Error: " + e);
+                                }
 
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
@@ -90,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.e("Ezgo", "Error: " + error.toString());
+                            String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                            Log.e("Ezgo", "Response: " + responseBody);
                         }
                     });
             queue.add(jsonObjectRequest);

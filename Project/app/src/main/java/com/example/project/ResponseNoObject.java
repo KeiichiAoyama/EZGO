@@ -1,9 +1,9 @@
 package com.example.project;
 
 public class ResponseNoObject {
-    private boolean success;
+    private boolean Success;
 
     public boolean isSuccess() {
-        return success;
+        return Success;
     }
 }

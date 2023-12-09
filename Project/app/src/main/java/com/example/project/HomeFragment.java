@@ -7,14 +7,21 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,17 +34,35 @@ public class HomeFragment extends Fragment {
 
     LinearLayout btnTicket, btnHotel, btnTour, btnSearch;
     ShapeableImageView btnProfile;
+    TextView uName;
+    String image;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_home,container,false);
-        //find id
+        SharedPreferences preferences = getActivity().getSharedPreferences("ezgo", Context.MODE_PRIVATE);
+        String userJson = preferences.getString("user", null);
+        User user = new Gson().fromJson(userJson, User.class);
+        Log.d("Ezgo", "uName2: " + user.uName);
+
+        uName = v.findViewById(R.id.profileName);
         btnSearch = v.findViewById(R.id.search);
         btnTicket = v.findViewById(R.id.btnTicket);
         btnHotel = v.findViewById(R.id.btnHotel);
         btnTour = v.findViewById(R.id.btnTour);
         btnProfile = v.findViewById(R.id.profileHome);
+
+        String urlReq = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
+        String urlImg = "https://projekuasmobappezgowebsite.000webhostapp.com/images/";
+
+        uName.setText(user.uName);
+        if(user.uProfilePicture != null){
+            image = urlImg + user.uProfilePicture;
+        }else{
+            image = urlImg + "defaultpfp.png";
+        }
+        Picasso.get().load(image).into(btnProfile);
 
         btnTicket.setOnClickListener(view -> {
             Intent i = new Intent(getActivity(), TicketActivity.class);

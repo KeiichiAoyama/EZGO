@@ -1,9 +1,11 @@
 package com.example.project;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,10 +24,12 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView textTitle;
+        public ImageView imgDis;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.txtCard);
+            imgDis = itemView.findViewById(R.id.ImgDisHome);
         }
     }
 
@@ -39,6 +43,7 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.MyViewHolder> 
     @Override
     public void onBindViewHolder(AdapterHome.MyViewHolder holder, int position) {
         MyItem item = itemList.get(position);
+        holder.imgDis.setImageResource(item.getImg());
         holder.textTitle.setText(item.getTitle());
     }
 

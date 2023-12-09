@@ -36,12 +36,12 @@ public class SingupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singup);
-        MaterialButton btn = (MaterialButton) findViewById(R.id.btnCreateAcc);
-        inputUsername = (TextInputEditText) findViewById(R.id.inputUsername);
-        inputName = (TextInputEditText) findViewById(R.id.inputname);
-        inputPass = (TextInputEditText) findViewById(R.id.inputPassword);
-        inputEmail = (TextInputEditText) findViewById(R.id.inputEmail);
-        inputTelp = (TextInputEditText) findViewById(R.id.inputTelp);
+        MaterialButton btn = findViewById(R.id.btnCreateAcc);
+        inputUsername = findViewById(R.id.inputUsername);
+        inputName = findViewById(R.id.inputname);
+        inputPass = findViewById(R.id.inputPassword);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputTelp = findViewById(R.id.inputTelp);
         btn.setOnClickListener(view -> {
             username = Objects.requireNonNull(inputUsername.getText()).toString();
             name = Objects.requireNonNull(inputName.getText()).toString();
@@ -69,9 +69,9 @@ public class SingupActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             ResponseMessage resp = gson.fromJson(response.toString(), ResponseMessage.class);
                             boolean success = resp.isSuccess();
-                            Log.d("Ezgo", "Response: " + Boolean.toString(success));
+                            Log.d("Ezgo", "Response: " + success);
 
-                            if (success == true) {
+                            if (success) {
                                 /*if (errLogin != null) {
                                     errLogin.setVisibility(View.GONE);
                                 }*/

@@ -17,8 +17,6 @@ public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_order,container,false);
-        Window window = requireActivity().getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(requireContext(), android.R.color.white));
         return v;
     }
 }

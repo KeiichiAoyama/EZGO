@@ -17,7 +17,7 @@ public class HotelViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel_view);
-        recyclerView = (RecyclerView) findViewById(R.id.viewHotel);
+        recyclerView = findViewById(R.id.viewHotel);
         back = findViewById(R.id.backHotelView);
         search = findViewById(R.id.searchHotelView);
 

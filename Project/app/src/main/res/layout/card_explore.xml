@@ -3,69 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
     app:cardElevation="5dp"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="10dp"
-    android:layout_width="370dp"
-    android:layout_height="220dp">
+    android:layout_margin="10dp"
+    android:layout_width="175dp"
+    android:layout_height="200dp">
 
     <ImageView
         android:id="@+id/ImgDis"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/rajaampat" />
 
-    <TextView
-        android:id="@+id/txtPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="80dp"
-        android:padding="20dp"
-        android:text="Raja Ampat"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp">
-
-        <ImageView
-            android:layout_gravity="start"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/baseline_star_24" />
-
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
-            android:layout_gravity="start"
-            android:id="@+id/txtRating"
+            android:id="@+id/txtPlace"
+            android:fontFamily="@font/fonarto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <ToggleButton
-            android:layout_gravity="end"
-            android:id="@+id/btnLike"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="250dp"
-            android:background="@drawable/toggle_selector"
-            android:textOff=""
-            android:textOn="" />
-
-        <ImageView
-            android:layout_gravity="end"
-            android:id="@+id/btnComment"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/baseline_comment_24" />
+            android:layout_gravity="start|bottom"
+            android:text="Bromo"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txtDesc"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:text="deskirpsi singkat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

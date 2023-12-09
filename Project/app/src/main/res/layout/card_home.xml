@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/poptour1"
-    android:layout_width="250dp"
-    android:layout_height="150dp"
-    android:layout_marginStart="15dp"
-    android:scaleType="centerCrop"
     app:cardCornerRadius="20dp"
-    app:cardElevation="5dp">
+    app:cardElevation="5dp"
+    android:layout_margin="10dp"
+    android:layout_width="175dp"
+    android:layout_height="200dp">
 
     <ImageView
+        android:id="@+id/ImgDisHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/rajaampat" />
 
-    <TextView
-        android:id="@+id/txtCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|bottom"
-        android:padding="20dp"
-        android:text="Raja Ampat"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+
+        <TextView
+            android:layout_margin="20dp"
+            android:id="@+id/txtCard"
+            android:fontFamily="@font/fonarto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|bottom"
+            android:text="Bromo"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 </androidx.cardview.widget.CardView>

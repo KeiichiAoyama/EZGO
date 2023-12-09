@@ -19,95 +19,80 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <!--Background-->
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="330dp"
-                android:background="@drawable/round_hero"
-                android:contentDescription="@string/bg"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/imageView"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="330dp"-->
+            <!--                android:background="@drawable/bromo"-->
+            <!--                android:contentDescription="@string/bg"-->
+            <!--                android:scaleType="centerCrop"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
             <!--ProfileFragment-->
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:gravity="start"
                 android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profileHome"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:elevation="5dp"
-                    android:scaleType="centerCrop"
-                    app:shapeAppearanceOverlay="@style/circle"
-                    app:srcCompat="@drawable/profil" />
+
                 <TextView
                     android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:text="Samuel Rai Indrawan"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileHome"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:elevation="5dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/profil" />
             </LinearLayout>
 
-            <TextView
-                android:fontFamily="@font/fonarto"
-                android:textSize="30sp"
-                android:id="@+id/textView"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:text="@string/head1"
-                android:textStyle="normal"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-            <!--Search Bar-->
             <LinearLayout
                 android:id="@+id/search"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
                 android:background="@drawable/roundmain"
                 android:elevation="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start|center"
                     android:layout_marginStart="20dp"
+                    android:drawablePadding="5dp"
                     android:text="@string/explore_now"
-                    android:textColor="#45000000" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="200dp"
-                    android:background="@drawable/round_search_24"
-                    android:contentDescription="@string/icon" />
+                    android:textColor="#45000000"
+                    app:drawableStartCompat="@drawable/round_search_24" />
             </LinearLayout>
             <!--Bar Menu-->
             <LinearLayout
-
                 android:id="@+id/Lin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -115,16 +100,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/search">
                 <!--Pesawat-->
                 <LinearLayout
-                    android:layout_marginVertical="10dp"
                     android:id="@+id/btnTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="10dp"
                     android:background="@drawable/roundmain"
+                    android:elevation="5dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:elevation="5dp"
-                    android:padding="10dp">
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
@@ -153,16 +138,16 @@
                 </LinearLayout>
                 <!--Hotel-->
                 <LinearLayout
-                    android:layout_marginVertical="10dp"
-                    android:padding="10dp"
                     android:id="@+id/btnHotel"
-                    android:background="@drawable/roundmain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/roundmain"
                     android:elevation="5dp"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
@@ -191,16 +176,16 @@
                 </LinearLayout>
                 <!--Tour-->
                 <LinearLayout
-                    android:layout_marginVertical="10dp"
                     android:id="@+id/btnTour"
-                    android:elevation="5dp"
-                    android:padding="10dp"
-                    android:background="@drawable/roundmain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/roundmain"
+                    android:elevation="5dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
@@ -232,7 +217,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
@@ -252,34 +237,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ViewHome1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
-            </LinearLayout>
-            <!--Popular Tour-->
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:text="@string/head2"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/ViewHome2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,12 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".LandingActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".HotelDetailActivity"
@@ -81,7 +76,7 @@
             android:exported="false" />
         <activity
             android:name=".ExploreDetailActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:theme="@style/WhiteBar"
             android:name=".PaymentActivity"
@@ -117,8 +112,14 @@
             android:name=".HomeFragment"
             android:exported="false" />
         <activity
+            android:theme="@style/WhiteBar"
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

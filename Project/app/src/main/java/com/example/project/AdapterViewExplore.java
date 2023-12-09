@@ -29,9 +29,7 @@ public class AdapterViewExplore extends RecyclerView.Adapter<AdapterViewExplore.
         public MyViewHolder(View itemView) {
             super(itemView);
             txtPlace = itemView.findViewById(R.id.txtPlace);
-            txtRating = itemView.findViewById(R.id.txtRating);
             imgDis = itemView.findViewById(R.id.ImgDis);
-            btnLike = itemView.findViewById(R.id.btnLike);
 
         }
     }
@@ -47,8 +45,7 @@ public class AdapterViewExplore extends RecyclerView.Adapter<AdapterViewExplore.
     public void onBindViewHolder(AdapterViewExplore.MyViewHolder holder, int position) {
         ExploreData exploreData = explore[position];
         holder.txtPlace.setText(exploreData.getPlace());
-        holder.imgDis.setImageResource(exploreData.getGambar());
-        holder.btnLike.setChecked(exploreData.isLike());
+        holder.imgDis.setImageResource(exploreData.getGambar());;
         holder.itemView.setOnClickListener(view -> {
             Intent i = new Intent(context, ExploreDetailActivity.class);
             context.startActivity(i);

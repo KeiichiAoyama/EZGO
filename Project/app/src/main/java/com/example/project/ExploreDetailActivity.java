@@ -1,8 +1,13 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.volley.Request;
@@ -18,6 +24,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,6 +47,8 @@ public class ExploreDetailActivity extends AppCompatActivity {
     private ToggleButton btnLike;
     private MaterialButton btnWatch;
     private int likes;
+    private LatLng position;
+    private SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +69,7 @@ public class ExploreDetailActivity extends AppCompatActivity {
         locDesc = (TextView) findViewById(R.id.locDesc);
         locLike = (TextView) findViewById(R.id.locLike);
         btnWatch = (MaterialButton) findViewById(R.id.btnWatch);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.theMap);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         Gson gson = new Gson();
@@ -98,6 +113,20 @@ public class ExploreDetailActivity extends AppCompatActivity {
                     }
                 });
         queue.add(jsonObjectRequest);
+
+        try{
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    position = new LatLng(loc.lLat, loc.lLong);
+                    googleMap.addMarker(new MarkerOptions().position(position).title("My Location Now")).showInfoWindow();
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLng(position));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 16));
+                }
+            });
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+        }
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

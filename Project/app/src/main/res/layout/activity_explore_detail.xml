@@ -66,6 +66,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/lorem" />
 
+                    <fragment
+                        android:id="@+id/theMap"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="10dp" />
+
                     <ImageView
                         android:layout_width="360dp"
                         android:layout_height="0.5dp"

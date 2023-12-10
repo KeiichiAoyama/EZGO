@@ -11,6 +11,9 @@ public class location implements Serializable {
     public String lDesc;
     public String lImage;
     public int lLikes;
+    public double lLat;
+    public double lLong;
+    public String lLink;
 
     public location(){}
 

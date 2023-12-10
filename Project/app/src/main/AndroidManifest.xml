@@ -10,13 +10,16 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false" />
         <activity
             android:name=".PaymentSuccessActivity"
             android:exported="false"
@@ -83,9 +86,9 @@
             android:name=".ExploreDetailActivity"
             android:exported="false" />
         <activity
-            android:theme="@style/WhiteBar"
             android:name=".PaymentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/WhiteBar" />
         <activity
             android:name=".SingupActivity"
             android:exported="false" />
@@ -118,8 +121,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

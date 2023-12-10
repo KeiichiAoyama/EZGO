@@ -1,7 +1,6 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -27,13 +27,13 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ExploreDetailActivity extends AppCompatActivity {
     private ImageView locImg;
     private TextView locName, locCity, locDesc, locLike;
     private ToggleButton btnLike;
+    private MaterialButton btnWatch;
     private int likes;
 
     @Override
@@ -54,6 +54,7 @@ public class ExploreDetailActivity extends AppCompatActivity {
         locCity = (TextView) findViewById(R.id.locCity);
         locDesc = (TextView) findViewById(R.id.locDesc);
         locLike = (TextView) findViewById(R.id.locLike);
+        btnWatch = (MaterialButton) findViewById(R.id.btnWatch);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         Gson gson = new Gson();
@@ -157,6 +158,14 @@ public class ExploreDetailActivity extends AppCompatActivity {
                             }
                         });
                 queue.add(jsonObjectRequest);
+            }
+        });
+        btnWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExploreDetailActivity.this, WebViewActivity.class);
+                intent.putExtra("link", loc.lLink);
+                startActivity(intent);
             }
         });
     }

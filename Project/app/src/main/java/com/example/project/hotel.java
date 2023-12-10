@@ -19,8 +19,6 @@ public class hotel implements Serializable {
     public String hVendor;
     public double hRating;
     public String hDate;
-    public double hLat;
-    public double hLong;
 
     public hotel(){}
 

@@ -271,7 +271,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:text="@string/head2"
+                    android:text="@string/head4"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />

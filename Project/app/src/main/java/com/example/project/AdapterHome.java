@@ -59,6 +59,18 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.MyViewHolder> 
                     intent = new Intent(context, ExploreDetailActivity.class);
                     location loc = (location) item.getObj();
                     intent.putExtra("object", loc);
+                }else if(objectType == ticket.class){
+                    intent = new Intent(context, TicketDetailActivity.class);
+                    ticket tix = (ticket) item.getObj();
+                    intent.putExtra("object", tix);
+                }else if(objectType == hotel.class){
+                    intent = new Intent(context, HotelDetailActivity.class);
+                    hotel htl = (hotel) item.getObj();
+                    intent.putExtra("object", htl);
+                }else if(objectType == tour.class){
+                    intent = new Intent(context, TourDetailActivity.class);
+                    tour trp = (tour) item.getObj();
+                    intent.putExtra("object", trp);
                 }
                 context.startActivity(intent);
             }

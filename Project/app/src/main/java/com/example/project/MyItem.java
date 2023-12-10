@@ -12,6 +12,12 @@ public class MyItem<T>{
     public String getTitle() {
         if (obj instanceof location) {
             return ((location) obj).lName;
+        }else if(obj instanceof ticket){
+            return ((ticket) obj).tcName;
+        }else if(obj instanceof hotel){
+            return ((hotel) obj).hName;
+        }else if(obj instanceof tour){
+            return ((tour) obj).tpName;
         }else{
             return null;
         }
@@ -20,6 +26,12 @@ public class MyItem<T>{
     public String getImage() {
         if (obj instanceof location) {
             return ((location) obj).lImage;
+        }else if(obj instanceof ticket){
+            return ((ticket) obj).tcImage;
+        }else if(obj instanceof hotel){
+            return ((hotel) obj).hImage;
+        }else if(obj instanceof tour){
+            return ((tour) obj).tpImage;
         }else{
             return null;
         }

@@ -11,7 +11,7 @@ public class User {
     public String uAddress;
     public String uPhone;
     public String uEmail;
-    public LocalDate uBirthdate;
+    public String uBirthdate;
     public String uProfilePicture;
 
     public User(){}

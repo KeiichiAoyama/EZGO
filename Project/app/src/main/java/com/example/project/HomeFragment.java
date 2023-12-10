@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
     AdapterHome adapterHome;
 
     ArrayList<MyItem> itemList1 = new ArrayList<>();
-    ArrayList<MyItem> itemList2;
+    ArrayList<MyItem> itemList2 = new ArrayList<>();
 
     LinearLayout btnTicket, btnHotel, btnTour, btnSearch;
     ShapeableImageView btnProfile;
@@ -124,6 +124,62 @@ public class HomeFragment extends Fragment {
                 });
         queue.add(jsonObjectRequest);
 
+        queue = Volley.newRequestQueue(requireActivity());
+        params = new HashMap<>();
+        params.put("controller", "order");
+        params.put("method", "homePopular");
+
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
+                new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Ezgo", "ResponseHome: " + response);
+                        ResponseThreeObjectList<ticket, hotel, tour> resp = gson.fromJson(response.toString(), new TypeToken<ResponseThreeObjectList<ticket, hotel, tour>>() {}.getType());
+                        boolean success = resp.isSuccess();
+                        List<ticket> ticks = resp.getData1();
+                        List<hotel> hotls = resp.getData2();
+                        List<tour> tours = resp.getData3();
+
+                        if (success == true) {
+                            try {
+                                itemList2.clear();
+                                int num = 1;
+                                for (ticket tick : ticks) {
+                                    itemList2.add(new MyItem(tick));
+                                    Log.d("Ezgo", "currently: " + num);
+                                    num++;
+                                }
+                                for (hotel hotl : hotls) {
+                                    itemList2.add(new MyItem(hotl));
+                                    Log.d("Ezgo", "currently: " + num);
+                                    num++;
+                                }
+                                for (tour tour : tours) {
+                                    itemList2.add(new MyItem(tour));
+                                    Log.d("Ezgo", "currently: " + num);
+                                    num++;
+                                }
+                                recyclerView2 = v.findViewById(R.id.ViewHome2);
+                                adapterHome = new AdapterHome(getActivity(), itemList2);
+                                recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+                                recyclerView2.setAdapter(adapterHome);
+                            }catch (Exception e){
+                                Log.e("Ezgo", "Error: " + e);
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Ezgo", "Error: " + error.toString());
+                        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                        Log.e("Ezgo", "Response: " + responseBody);
+                    }
+                });
+        queue.add(jsonObjectRequest);
+
         btnTicket.setOnClickListener(view -> {
             Intent i = new Intent(getActivity(), TicketActivity.class);
             startActivity(i);
@@ -148,17 +204,6 @@ public class HomeFragment extends Fragment {
             Intent i = new Intent(getActivity(),SearchActivity.class);
             startActivity(i);
         });
-
-        recyclerView2 = v.findViewById(R.id.ViewHome2);
-        itemList2 = new ArrayList<>();
-        itemList2.add(new MyItem("Item 1"));
-        itemList2.add(new MyItem("Item 2"));
-        itemList2.add(new MyItem("Item 3"));
-        itemList2.add(new MyItem("Item 4"));
-        itemList2.add(new MyItem("Item 5"));
-        adapterHome = new AdapterHome(getActivity(), itemList2);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerView2.setAdapter(adapterHome);
 
         return v;
     }

@@ -6,17 +6,39 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class PaymentDetailActivity extends AppCompatActivity {
@@ -24,8 +46,11 @@ public class PaymentDetailActivity extends AppCompatActivity {
     TextView txtRek, txtAmount, txtBank;
     ImageView imgBank;
     LinearLayout pb;
-    int img;
-    String noRek, amount, bank;
+    int img, type, amount, price;
+    String noRek, bank;
+    ticket tix;
+    hotel htl;
+    tour trp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +74,23 @@ public class PaymentDetailActivity extends AppCompatActivity {
         noRek = b.getString("norek");
         bank = b.getString("bank");
         img = b.getInt("draw");
-        amount = b.getString("price");
+        price = b.getInt("price");
+        amount = b.getInt("amount");
+
+        if(b.getSerializable("object") instanceof ticket){
+            tix = (ticket) b.getSerializable("object");
+            type = 1;
+        }else if(b.getSerializable("object") instanceof hotel){
+            htl = (hotel) b.getSerializable("object");
+            type = 2;
+        }else if(b.getSerializable("object") instanceof tour){
+            trp = (tour) b.getSerializable("object");
+            type = 3;
+        }
+
         txtBank.setText(bank);
         txtRek.setText(noRek);
-        txtAmount.setText(amount);
+        txtAmount.setText(String.valueOf(price));
         imgBank.setImageResource(img);
 
         new CountDownTimer(duration * 1000L, 1000) {
@@ -87,11 +125,73 @@ public class PaymentDetailActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     pb.setVisibility(LinearLayout.INVISIBLE);
-                    Intent i = new Intent(getApplicationContext(), PaymentSuccessActivity.class);
-                    i.putExtra("price", amount);
-                    i.putExtra("norek",noRek);
-                    startActivity(i);
-                    finish();
+
+                    String urlReq = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
+                    String method = "";
+                    String productID = "";
+
+                    switch (type){
+                        case 1:
+                            method = "orderTicket";
+                            productID = tix.productID;
+                            break;
+                        case 2:
+                            method = "orderHotel";
+                            productID = htl.productID;
+                            break;
+                        case 3:
+                            method = "orderTour";
+                            productID = trp.productID;
+                            break;
+                    }
+
+                    SharedPreferences preferences = getSharedPreferences("ezgo", Context.MODE_PRIVATE);
+                    String userJson = preferences.getString("user", null);
+                    User user = new Gson().fromJson(userJson, User.class);
+
+                    RequestQueue queue = Volley.newRequestQueue(PaymentDetailActivity.this);
+                    Gson gson = new Gson();
+
+                    Map<String, Object> params = new HashMap<>();
+                    params.put("controller", "order");
+                    params.put("method", method);
+                    params.put("productID", productID);
+                    params.put("userID", user.userID);
+                    params.put("payMethod", bank);
+                    params.put("tdAmount", amount);
+                    params.put("tdTotalPrice", price);
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
+                            new JSONObject(params),
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Log.d("Ezgo", "ResponseHome: " + response);
+                                    ResponseNoObject resp = gson.fromJson(response.toString(), new TypeToken<ResponseNoObject>() {}.getType());
+                                    boolean success = resp.isSuccess();
+
+                                    if (success == true) {
+                                        try {
+                                            Intent i = new Intent(getApplicationContext(), PaymentSuccessActivity.class);
+                                            i.putExtra("price", price);
+                                            i.putExtra("norek",noRek);
+                                            startActivity(i);
+                                            finish();
+                                        }catch (Exception e){
+                                            Log.e("Ezgo", "Error: " + e);
+                                        }
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.e("Ezgo", "Error: " + error.toString());
+                                    String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                                    Log.e("Ezgo", "Response: " + responseBody);
+                                }
+                            });
+                    queue.add(jsonObjectRequest);
                 }
             }, 3000);
         });
@@ -105,7 +205,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         copyButtonAmount.setOnClickListener(view -> {
             ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clipData = ClipData.newPlainText("Amount", amount);
+            ClipData clipData = ClipData.newPlainText("Price", String.valueOf(price));
             clipboardManager.setPrimaryClip(clipData);
             Toast.makeText(getApplicationContext(), "Teks disalin ke Clipboard", Toast.LENGTH_SHORT).show();
         });

@@ -168,12 +168,11 @@ public class TicketDetailActivity extends AppCompatActivity {
         });
 
         order.setOnClickListener(view -> {
-            /*Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
-            Bundle b = new Bundle();
-            b.putString("id", Objects.requireNonNull(bundle).getString("ID"));
-            b.putString("price", totalprice.getText().toString());
-            i.putExtras(b);
-            startActivity(i);*/
+            Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
+            i.putExtra("object", tix);
+            i.putExtra("price", totPrice);
+            i.putExtra("amount", quantity);
+            startActivity(i);
         });
 
     }

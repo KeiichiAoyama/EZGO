@@ -91,8 +91,8 @@ public class internalDB extends SQLiteOpenHelper {
     }
 
     public void deleteUser(User user){
-        String filter = "userID="+user.userID;
-        db.delete("user", filter, null);
+        String filter = "userID=?";
+        db.delete("user", filter, new String[]{user.userID});
     }
 
     public boolean checkUserExist() {

@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.io.Serializable;
 
 public class city implements Serializable {
-    public String cityID;
+    public int cityID;
     public String cName;
 
     public city(){}

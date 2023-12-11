@@ -3,6 +3,7 @@ package com.example.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -27,6 +28,8 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -105,10 +108,21 @@ public class TicketDetailActivity extends AppCompatActivity {
                                 String image = urlImg + tix.tcImage;
                                 Picasso.get().load(image).into(bg);
 
-                                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                                Date time1 = sdf.parse(tix.tcDepartureTime);
-                                Date time2 = sdf.parse(tix.tcTravelTime);
-                                long totalTimeInMillis = time1.getTime() + time2.getTime();
+                                DateTimeFormatter formatter = null;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                                }
+
+                                LocalTime sum =  null;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    LocalTime time1 = LocalTime.parse(tix.tcDepartureTime, formatter);
+                                    LocalTime time2 = LocalTime.parse(tix.tcTravelTime, formatter);
+
+                                    sum = time1.plusHours(time2.getHour())
+                                            .plusMinutes(time2.getMinute())
+                                            .plusSeconds(time2.getSecond());
+                                }
+
 
                                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                                 Date dateForm = inputFormat.parse(tix.tcDate);
@@ -116,7 +130,9 @@ public class TicketDetailActivity extends AppCompatActivity {
                                 String outputDateString = outputFormat.format(dateForm);
 
                                 date.setText(outputDateString);
-                                arivTime.setText(new Time(totalTimeInMillis).toString());
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    arivTime.setText(sum.format(formatter));
+                                }
                                 rating.setText(Double.toString(tix.tcRating));
                                 ticketprice.setText(decimalFormat.format(tix.tcPrice).toString());
                                 qty.setText(Integer.toString(quantity));

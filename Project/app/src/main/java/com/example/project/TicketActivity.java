@@ -140,8 +140,20 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
 
         //btn
         btnPesawat.setOnClickListener(view -> {
-            String toCity = to.getSelectedItem().toString();
-            String fromCity = from.getSelectedItem().toString();
+            int toCity = 0;
+            int fromCity = 0;
+
+            String targetFrom = from.getSelectedItem().toString();
+            String targetTo = to.getSelectedItem().toString();
+
+            for (city obj : cities) {
+                if (targetFrom.equals(obj.cName)) {
+                     fromCity = obj.cityID;
+                } else if (targetTo.equals(obj.cName)) {
+                    toCity = obj.cityID;
+                }
+            }
+
             String date = calender.getText().toString();
             int pas = Integer.parseInt(passenger.getSelectedItem().toString());
             String ticktype = type.getSelectedItem().toString();
@@ -149,6 +161,8 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
             Intent i = new Intent(getApplicationContext(), TicketViewActivity.class);
             i.putExtra("from", fromCity);
             i.putExtra("to", toCity);
+            i.putExtra("fromStr", from.getSelectedItem().toString());
+            i.putExtra("toStr", to.getSelectedItem().toString());
             i.putExtra("date", date);
             i.putExtra("pas", pas);
             i.putExtra("type", ticktype);

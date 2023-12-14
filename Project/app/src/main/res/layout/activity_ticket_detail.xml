@@ -205,7 +205,7 @@
                 android:contentDescription="@string/circle2" />
 
             <TextView
-                android:id="@+id/txtSeatTypeDetailTicket"
+                android:id="@+id/txtRatingTicket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
@@ -355,5 +355,20 @@
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addMore"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:text="@string/addMore"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@+id/orderTicket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

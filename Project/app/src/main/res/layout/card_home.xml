@@ -7,13 +7,13 @@
     android:layout_width="175dp"
     android:layout_height="200dp">
 
-    <ImageView
-        android:id="@+id/ImgDisHome"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/rajaampat" />
-
+        <ImageView
+            android:id="@+id/ImgDisHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rajaampat"
+            android:contentDescription="@string/img" />
 
         <TextView
             android:layout_margin="20dp"

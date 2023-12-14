@@ -5,18 +5,33 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB02llNYkfRUN6cEFu3QpQR7b44EV2hb3g" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false" />
         <activity
             android:name=".PaymentSuccessActivity"
             android:exported="false"
@@ -78,9 +93,9 @@
             android:name=".ExploreDetailActivity"
             android:exported="false"/>
         <activity
-            android:theme="@style/WhiteBar"
             android:name=".PaymentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/WhiteBar" />
         <activity
             android:name=".SingupActivity"
             android:exported="false" />

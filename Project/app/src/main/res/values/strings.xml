@@ -21,8 +21,10 @@
     <string name="landing3">Find thousand of tourist destinations ready for you to visit</string>
     <!--HOME-->
     <string name="head1">Where do you want to explore today?</string>
-    <string name="head2">Popular Place</string>
+    <string name="head2">Popular Destinations</string>
     <string name="head3">Popular Tour</string>
+    <string name="head4">Popular Products</string>
+    <string name="head5">Check on YouTube</string>
     <string name="bus">Bus</string>
     <string name="kereta">Train</string>
     <string name="pesawat">Plane</string>
@@ -144,5 +146,5 @@
     <string name="copy">Copy</string>
     <string name="transfer_amount">Transfer Amount</string>
     <string name="transfer_done">Transfer Done</string>
-
+    <string name="addMore">Add Seat</string>
 </resources>

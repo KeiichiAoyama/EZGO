@@ -50,13 +50,7 @@ public class internalDB extends SQLiteOpenHelper {
         user.uAddress = cursor.getString(2);
         user.uPhone = cursor.getString(3);
         user.uEmail = cursor.getString(4);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String birthdateString = cursor.getString(5);
-
-            if (birthdateString != null) {
-                user.uBirthdate = LocalDate.parse(birthdateString);
-            }
-        }
+        user.uBirthdate = cursor.getString(5);
         user.uProfilePicture = cursor.getString(6);
         return user;
     }
@@ -97,8 +91,8 @@ public class internalDB extends SQLiteOpenHelper {
     }
 
     public void deleteUser(User user){
-        String filter = "userID="+user.userID;
-        db.delete("user", filter, null);
+        String filter = "userID=?";
+        db.delete("user", filter, new String[]{user.userID});
     }
 
     public boolean checkUserExist() {

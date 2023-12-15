@@ -7,51 +7,39 @@
     android:background="@color/white"
     tools:context=".TicketDetailActivity">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:background="@drawable/roundedshape"
-        android:contentDescription="@string/bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+    <FrameLayout
+        android:id="@+id/backDetailTicket"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/backDetailTicket"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/white_arrow_back_24"
-                android:contentDescription="@string/btn_b" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="120dp"
-                android:text="@string/ticket"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/baseline_arrow_back_24"
+            android:contentDescription="@string/btn_b" />
+    </FrameLayout>
 
-
-    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/fonarto"
+        android:text="@string/ticket"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backDetailTicket" />
 
 
     <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_width="370dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
         android:layout_height="205dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -61,7 +49,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -215,7 +203,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout8"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -343,11 +332,14 @@
 
     </LinearLayout>
 
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/orderTicket"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="40dp"
         android:text="@string/order_now"
         android:textColor="@color/white"
@@ -359,7 +351,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addMore"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginBottom="80dp"

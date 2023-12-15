@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +39,7 @@ import java.util.Objects;
 
 public class TicketDetailActivity extends AppCompatActivity {
 
-    ImageButton back, search;
+    FrameLayout back, search;
     ImageView iconPesawat, bg;
 
     int quantity = 1;
@@ -71,7 +72,6 @@ public class TicketDetailActivity extends AppCompatActivity {
         totalprice = findViewById(R.id.totalPrice);
         order = findViewById(R.id.orderTicket);
         add = findViewById(R.id.addMore);
-        bg = findViewById(R.id.imageView4);
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
@@ -91,66 +91,58 @@ public class TicketDetailActivity extends AppCompatActivity {
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
                 new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("Ezgo", "ResponseHome: " + response);
-                        ResponseOneObjectList<String> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObjectList<String>>() {}.getType());
-                        boolean success = resp.isSuccess();
-                        List<String> cNames = resp.getData();
+                response -> {
+                    Log.d("Ezgo", "ResponseHome: " + response);
+                    ResponseOneObjectList<String> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObjectList<String>>() {}.getType());
+                    boolean success = resp.isSuccess();
+                    List<String> cNames = resp.getData();
 
-                        if (success == true) {
-                            try {
-                                from.setText(cNames.get(0));
-                                to.setText(cNames.get(1));
-                                travelTime.setText((CharSequence) tix.tcTravelTime);
-                                departTime.setText((CharSequence) tix.tcDepartureTime);
-                                String image = urlImg + tix.tcImage;
-                                Picasso.get().load(image).into(bg);
+                    if (success) {
+                        try {
+                            from.setText(cNames.get(0));
+                            to.setText(cNames.get(1));
+                            travelTime.setText(tix.tcTravelTime);
+                            departTime.setText(tix.tcDepartureTime);
 
-                                DateTimeFormatter formatter = null;
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-                                }
-
-                                LocalTime sum =  null;
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    LocalTime time1 = LocalTime.parse(tix.tcDepartureTime, formatter);
-                                    LocalTime time2 = LocalTime.parse(tix.tcTravelTime, formatter);
-
-                                    sum = time1.plusHours(time2.getHour())
-                                            .plusMinutes(time2.getMinute())
-                                            .plusSeconds(time2.getSecond());
-                                }
-
-
-                                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                Date dateForm = inputFormat.parse(tix.tcDate);
-                                SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
-                                String outputDateString = outputFormat.format(dateForm);
-
-                                date.setText(outputDateString);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    arivTime.setText(sum.format(formatter));
-                                }
-                                rating.setText(Double.toString(tix.tcRating));
-                                ticketprice.setText(decimalFormat.format(tix.tcPrice).toString());
-                                qty.setText(Integer.toString(quantity));
-                                addfee.setText(decimalFormat.format(fee).toString());
-                                totalprice.setText(decimalFormat.format(totPrice).toString());
-                            }catch (Exception e){
-                                Log.e("Ezgo", "Error: " + e);
+                            DateTimeFormatter formatter = null;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
                             }
+
+                            LocalTime sum =  null;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                LocalTime time1 = LocalTime.parse(tix.tcDepartureTime, formatter);
+                                LocalTime time2 = LocalTime.parse(tix.tcTravelTime, formatter);
+
+                                sum = time1.plusHours(time2.getHour())
+                                        .plusMinutes(time2.getMinute())
+                                        .plusSeconds(time2.getSecond());
+                            }
+
+
+                            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            Date dateForm = inputFormat.parse(tix.tcDate);
+                            SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
+                            String outputDateString = outputFormat.format(dateForm);
+
+                            date.setText(outputDateString);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                arivTime.setText(sum.format(formatter));
+                            }
+                            rating.setText(Double.toString(tix.tcRating));
+                            ticketprice.setText(decimalFormat.format(tix.tcPrice));
+                            qty.setText(Integer.toString(quantity));
+                            addfee.setText(decimalFormat.format(fee));
+                            totalprice.setText(decimalFormat.format(totPrice));
+                        }catch (Exception e){
+                            Log.e("Ezgo", "Error: " + e);
                         }
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Ezgo", "Error: " + error.toString());
-                        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                        Log.e("Ezgo", "Response: " + responseBody);
-                    }
+                error -> {
+                    Log.e("Ezgo", "Error: " + error.toString());
+                    String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                    Log.e("Ezgo", "Response: " + responseBody);
                 });
         queue.add(jsonObjectRequest);
 
@@ -161,7 +153,7 @@ public class TicketDetailActivity extends AppCompatActivity {
                 quantity++;
                 totPrice = tix.tcPrice * quantity + fee;
                 qty.setText(Integer.toString(quantity));
-                totalprice.setText(decimalFormat.format(totPrice).toString());
+                totalprice.setText(decimalFormat.format(totPrice));
             }else{
                 Toast.makeText(getApplicationContext(), "Max Amount Reached", Toast.LENGTH_LONG).show();
             }

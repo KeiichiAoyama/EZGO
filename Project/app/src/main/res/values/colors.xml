@@ -7,4 +7,6 @@
     <color name="lightblue">#BFDBFB</color>
     <color name="darkblue">#0B4F9E</color>
     <color name="yellow">#ffcd3c</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="gradient">@drawable/gradient</color>
 </resources>

@@ -7,62 +7,63 @@
     android:background="@color/white"
     tools:context=".TicketActivity">
 
-    <!--Top bar-->
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/roundedshape"
-        android:contentDescription="@string/bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+    <FrameLayout
+        android:id="@+id/backTicket1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/backTicket1"
+        <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/white_arrow_back_24"
+            android:layout_gravity="center"
+            android:background="@drawable/baseline_arrow_back_24"
             android:contentDescription="@string/btn_b" />
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="120dp"
-            android:text="@string/ticket"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/searchTicket1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/white_search_24"
-            android:contentDescription="@string/btn_s" />
-    </androidx.appcompat.widget.Toolbar>
-    <!--Main-->
-    <LinearLayout
+    <TextView
+        android:id="@+id/toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/fonarto"
+        android:text="@string/ticket"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backTicket1" />
+
+    <FrameLayout
+        android:id="@+id/searchTicket1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_search_24"
+            android:contentDescription="@string/btn_s" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundmain"
         android:elevation="5dp"
         android:orientation="vertical"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
         <!--From-->
 
         <TextView
@@ -145,7 +146,7 @@
 
         <TextView
             android:id="@+id/calender"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_stroke"
             android:drawablePadding="10dp"
@@ -164,7 +165,7 @@
             android:textSize="18sp" />
 
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape_stroke"
@@ -197,8 +198,9 @@
             android:text="@string/ticket_type"
             android:textColor="@color/black"
             android:textSize="18sp" />
+
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape_stroke"
@@ -226,9 +228,9 @@
         <!--Button-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSearchTicket1"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/search"
             android:textSize="16sp"
             android:textStyle="bold"

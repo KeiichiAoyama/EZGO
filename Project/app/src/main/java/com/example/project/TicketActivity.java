@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,9 +41,9 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
     private static final int REQUEST_CODE = 1;
     private int tanggal, bulan, tahun;
     private TextView calender;
-    private Spinner passenger,type, from, to;
+    private Spinner passenger, type, from, to;
     private final String[] types = {"Plane", "Train", "Bus"};
-    private final String[] passangers = {"1","2","3","4","5","6","7","8","9","10"};
+    private final String[] passangers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     private List<city> cities;
     private String urlReq = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
 
@@ -54,8 +55,8 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
         //find id
         type = findViewById(R.id.type);
         passenger = findViewById(R.id.passanger);
-        ImageButton back = findViewById(R.id.backTicket1);
-        ImageButton search = findViewById(R.id.searchTicket1);
+        FrameLayout back = findViewById(R.id.backTicket1);
+        FrameLayout search = findViewById(R.id.searchTicket1);
         from = findViewById(R.id.fromSpin);
         to = findViewById(R.id.toSpin);
         MaterialButton btnPesawat = findViewById(R.id.btnSearchTicket1);
@@ -70,51 +71,46 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
                 new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("Ezgo", "ResponseHome: " + response);
-                        ResponseOneObjectList<city> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObjectList<city>>() {}.getType());
-                        boolean success = resp.isSuccess();
-                        cities = resp.getData();
+                response -> {
+                    Log.d("Ezgo", "ResponseHome: " + response);
+                    ResponseOneObjectList<city> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObjectList<city>>() {
+                    }.getType());
+                    boolean success = resp.isSuccess();
+                    cities = resp.getData();
 
-                        if (success == true) {
-                            try {
-                                List<String> cityNames = new ArrayList<>();
+                    if (success == true) {
+                        try {
+                            List<String> cityNames = new ArrayList<>();
 
-                                for (city city: cities) {
-                                    cityNames.add(city.cName);
-                                    Log.d("Ezgo", "ResponseHome: " + cityNames);
-                                }
-
-                                ArrayAdapter<String> adapterFrom = new ArrayAdapter<>(TicketActivity.this, android.R.layout.simple_spinner_item,cityNames);
-                                from.setAdapter(adapterFrom);
-                                from.setOnItemSelectedListener(TicketActivity.this);
-
-                                ArrayAdapter<String> adapterTo = new ArrayAdapter<>(TicketActivity.this, android.R.layout.simple_spinner_item,cityNames);
-                                to.setAdapter(adapterTo);
-                                to.setOnItemSelectedListener(TicketActivity.this);
-                            }catch (Exception e){
-                                Log.e("Ezgo", "Error: " + e);
+                            for (city city : cities) {
+                                cityNames.add(city.cName);
+                                Log.d("Ezgo", "ResponseHome: " + cityNames);
                             }
+
+                            ArrayAdapter<String> adapterFrom = new ArrayAdapter<>(TicketActivity.this, android.R.layout.simple_spinner_item, cityNames);
+                            from.setAdapter(adapterFrom);
+                            from.setOnItemSelectedListener(TicketActivity.this);
+
+                            ArrayAdapter<String> adapterTo = new ArrayAdapter<>(TicketActivity.this, android.R.layout.simple_spinner_item, cityNames);
+                            to.setAdapter(adapterTo);
+                            to.setOnItemSelectedListener(TicketActivity.this);
+                        } catch (Exception e) {
+                            Log.e("Ezgo", "Error: " + e);
                         }
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Ezgo", "Error: " + error.toString());
-                        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                        Log.e("Ezgo", "Response: " + responseBody);
-                    }
+                error -> {
+                    Log.e("Ezgo", "Error: " + error.toString());
+                    String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                    Log.e("Ezgo", "Response: " + responseBody);
                 });
         queue.add(jsonObjectRequest);
 
-        ArrayAdapter<String> adapterType = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,types);
+        ArrayAdapter<String> adapterType = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
         type.setAdapter(adapterType);
         type.setOnItemSelectedListener(this);
 
-        ArrayAdapter<String> adapterPassanger = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,passangers);
+        ArrayAdapter<String> adapterPassanger = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, passangers);
         passenger.setAdapter(adapterPassanger);
         passenger.setOnItemSelectedListener(this);
 
@@ -124,16 +120,13 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
             bulan = calendar.get(Calendar.MONTH);
             tanggal = calendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog dialog = new DatePickerDialog(TicketActivity.this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    tahun = i;
-                    bulan = i1 + 1;
-                    tanggal = i2;
+            DatePickerDialog dialog = new DatePickerDialog(TicketActivity.this, (datePicker, i, i1, i2) -> {
+                tahun = i;
+                bulan = i1 + 1;
+                tanggal = i2;
 
-                    calender.setText(String.format("%04d-%02d-%02d", tahun, bulan, tanggal));
-                }
-            },tahun,bulan,tanggal);
+                calender.setText(String.format("%04d-%02d-%02d", tahun, bulan, tanggal));
+            }, tahun, bulan, tanggal);
             dialog.show();
 
         });
@@ -148,7 +141,7 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
 
             for (city obj : cities) {
                 if (targetFrom.equals(obj.cName)) {
-                     fromCity = obj.cityID;
+                    fromCity = obj.cityID;
                 } else if (targetTo.equals(obj.cName)) {
                     toCity = obj.cityID;
                 }

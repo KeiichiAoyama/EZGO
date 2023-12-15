@@ -10,9 +10,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +46,6 @@ public class ExploreDetailActivity extends AppCompatActivity {
     private MaterialButton btnWatch;
     private int likes;
     private LatLng position;
-    private SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +57,16 @@ public class ExploreDetailActivity extends AppCompatActivity {
         String urlReq = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
         String urlImg = "https://projekuasmobappezgowebsite.000webhostapp.com/images/";
 
-        ImageButton btnBack = (ImageButton) findViewById(R.id.backDetailExplore);
-        ImageButton btnSearch = (ImageButton) findViewById(R.id.searchDetailExplore);
-        locImg = (ImageView) findViewById(R.id.locImg);
-        btnLike = (ToggleButton) findViewById(R.id.btnLike);
-        locName = (TextView) findViewById(R.id.locName);
-        locCity = (TextView) findViewById(R.id.locCity);
-        locDesc = (TextView) findViewById(R.id.locDesc);
-        locLike = (TextView) findViewById(R.id.locLike);
-        btnWatch = (MaterialButton) findViewById(R.id.btnWatch);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.theMap);
+        FrameLayout btnBack = findViewById(R.id.backDetailExplore);
+        FrameLayout btnSearch = findViewById(R.id.searchDetailExplore);
+        locImg = findViewById(R.id.imgExploreDetail);
+        btnLike = findViewById(R.id.btnLike);
+        locName = findViewById(R.id.titleExplore);
+        locCity = findViewById(R.id.address);
+        locDesc = findViewById(R.id.descExplore);
+        locLike = findViewById(R.id.locLike);
+        btnWatch = findViewById(R.id.btnWatch);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.theMap);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         Gson gson = new Gson();
@@ -81,121 +78,94 @@ public class ExploreDetailActivity extends AppCompatActivity {
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
                 new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("Ezgo", "ResponseHome: " + response);
-                        ResponseOneObject<String> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObject<String>>() {}.getType());
-                        boolean success = resp.isSuccess();
-                        String cName = resp.getData();
+                response -> {
+                    Log.d("Ezgo", "ResponseHome: " + response);
+                    ResponseOneObject<String> resp = gson.fromJson(response.toString(), new TypeToken<ResponseOneObject<String>>() {
+                    }.getType());
+                    boolean success = resp.isSuccess();
+                    String cName = resp.getData();
 
-                        if (success == true) {
-                            try {
-                                locName.setText(loc.lName);
-                                locCity.setText(cName);
-                                locDesc.setText(loc.lDesc);
-                                likes = loc.lLikes;
-                                locLike.setText(String.valueOf(loc.lLikes));
-                                String image = urlImg + loc.lImage;
-                                Picasso.get().load(image).into(locImg);
-                            }catch (Exception e){
-                                Log.e("Ezgo", "Error: " + e);
-                            }
+                    if (success) {
+                        try {
+                            locName.setText(loc.lName);
+                            locCity.setText(cName);
+                            locDesc.setText(loc.lDesc);
+                            likes = loc.lLikes;
+                            locLike.setText(String.valueOf(loc.lLikes));
+                            String image = urlImg + loc.lImage;
+                            Picasso.get().load(image).into(locImg);
+                        } catch (Exception e) {
+                            Log.e("Ezgo", "Error: " + e);
                         }
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Ezgo", "Error: " + error.toString());
-                        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                        Log.e("Ezgo", "Response: " + responseBody);
-                    }
+                error -> {
+                    Log.e("Ezgo", "Error: " + error.toString());
+                    String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                    Log.e("Ezgo", "Response: " + responseBody);
                 });
         queue.add(jsonObjectRequest);
 
-        try{
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap googleMap) {
-                    position = new LatLng(loc.lLat, loc.lLong);
-                    googleMap.addMarker(new MarkerOptions().position(position).title("My Location Now")).showInfoWindow();
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLng(position));
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 16));
-                }
+        try {
+            mapFragment.getMapAsync(googleMap -> {
+                position = new LatLng(loc.lLat, loc.lLong);
+                googleMap.addMarker(new MarkerOptions().position(position).title("My Location Now")).showInfoWindow();
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(position));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 16));
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnSearch.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(i);
         });
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(i);
+        btnLike.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                likes++;
+            } else {
+                likes--;
             }
-        });
-        btnLike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    likes++;
-                }else{
-                    likes--;
-                }
 
-                RequestQueue queue = Volley.newRequestQueue(ExploreDetailActivity.this);
-                Gson gson = new Gson();
+            RequestQueue queue1 = Volley.newRequestQueue(ExploreDetailActivity.this);
+            Gson gson1 = new Gson();
 
-                Map<String, Object> params = new HashMap<>();
-                params.put("controller", "location");
-                params.put("method", "like");
-                params.put("locID", loc.locID);
-                params.put("lLikes", likes);
+            Map<String, Object> params1 = new HashMap<>();
+            params1.put("controller", "location");
+            params1.put("method", "like");
+            params1.put("locID", loc.locID);
+            params1.put("lLikes", likes);
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
-                        new JSONObject(params),
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("Ezgo", "ResponseHome: " + response);
-                                ResponseNoObject resp = gson.fromJson(response.toString(), new TypeToken<ResponseNoObject>() {}.getType());
-                                boolean success = resp.isSuccess();
+            JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST, urlReq,
+                    new JSONObject(params1),
+                    response -> {
+                        Log.d("Ezgo", "ResponseHome: " + response);
+                        ResponseNoObject resp = gson1.fromJson(response.toString(), new TypeToken<ResponseNoObject>() {
+                        }.getType());
+                        boolean success = resp.isSuccess();
 
-                                if (success == true) {
-                                    try {
-                                        locLike.setText(String.valueOf(likes));
-                                        Log.d("Ezgo", "Likes: " + likes);
-                                    }catch (Exception e){
-                                        Log.e("Ezgo", "Error: " + e);
-                                    }
-                                }
+                        if (success) {
+                            try {
+                                locLike.setText(String.valueOf(likes));
+                                Log.d("Ezgo", "Likes: " + likes);
+                            } catch (Exception e) {
+                                Log.e("Ezgo", "Error: " + e);
                             }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.e("Ezgo", "Error: " + error.toString());
-                                String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
-                                Log.e("Ezgo", "Response: " + responseBody);
-                            }
-                        });
-                queue.add(jsonObjectRequest);
-            }
+                        }
+                    },
+                    error -> {
+                        Log.e("Ezgo", "Error: " + error.toString());
+                        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                        Log.e("Ezgo", "Response: " + responseBody);
+                    });
+            queue1.add(jsonObjectRequest1);
         });
-        btnWatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExploreDetailActivity.this, WebViewActivity.class);
-                intent.putExtra("link", loc.lLink);
-                startActivity(intent);
-            }
+        btnWatch.setOnClickListener(view -> {
+            Intent intent1 = new Intent(ExploreDetailActivity.this, WebViewActivity.class);
+            intent1.putExtra("link", loc.lLink);
+            startActivity(intent1);
         });
     }
 }

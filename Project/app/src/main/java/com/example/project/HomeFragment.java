@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -106,7 +107,7 @@ public class HomeFragment extends Fragment {
                                 }
                                 recyclerView = v.findViewById(R.id.ViewHome1);
                                 adapterHome = new AdapterHome(getActivity(), itemList1);
-                                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+                                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
                                 recyclerView.setAdapter(adapterHome);
                             }catch (Exception e){
                                 Log.e("Ezgo", "Error: " + e);
@@ -162,7 +163,7 @@ public class HomeFragment extends Fragment {
                                 }
                                 recyclerView2 = v.findViewById(R.id.ViewHome2);
                                 adapterHome = new AdapterHome(getActivity(), itemList2);
-                                recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+                                recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(),2));
                                 recyclerView2.setAdapter(adapterHome);
                             }catch (Exception e){
                                 Log.e("Ezgo", "Error: " + e);

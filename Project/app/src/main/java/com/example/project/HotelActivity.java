@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,8 +30,8 @@ public class HotelActivity extends AppCompatActivity implements AdapterView.OnIt
         //find id
         room = findViewById(R.id.room);
         person = findViewById(R.id.person);
-        ImageButton back = findViewById(R.id.backHotel);
-        ImageButton search = findViewById(R.id.searchHotel);
+        FrameLayout back = findViewById(R.id.backHotel);
+        FrameLayout search = findViewById(R.id.searchHotel);
         btnLocation = findViewById(R.id.btnLocationHotel);
         calender = findViewById(R.id.calenderHotel);
         MaterialButton btnHotel = findViewById(R.id.btnSearchHotel);

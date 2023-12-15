@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class TicketViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AdapterViewTicket adapterViewTicket;
     TextView fromtxt,totxt;
-    ImageButton back, search;
+    FrameLayout back, search;
     String urlReq = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
 
     @Override

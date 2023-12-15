@@ -33,7 +33,7 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.MyViewHolder> 
         public MyViewHolder(View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.txtCard);
-            cardImg = itemView.findViewById(R.id.imgCard);
+            cardImg = itemView.findViewById(R.id.ImgDisHome);
         }
     }
 

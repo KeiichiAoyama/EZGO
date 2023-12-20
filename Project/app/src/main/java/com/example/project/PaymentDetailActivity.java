@@ -129,19 +129,27 @@ public class PaymentDetailActivity extends AppCompatActivity {
                     String urlReq = "https://projekuasmobappezgowebsite.000webhostapp.com/router.php";
                     String method = "";
                     String productID = "";
+                    String id = "";
+                    int updAmt = 0;
 
                     switch (type){
                         case 1:
                             method = "orderTicket";
                             productID = tix.productID;
+                            id = tix.ticketID;
+                            updAmt = tix.tcSeat - amount;
                             break;
                         case 2:
                             method = "orderHotel";
                             productID = htl.productID;
+                            id = htl.hotelID;
+                            updAmt = htl.hNights - amount;
                             break;
                         case 3:
                             method = "orderTour";
                             productID = trp.productID;
+                            id = trp.tourID;
+                            updAmt = trp.tpSlot - amount;
                             break;
                     }
 
@@ -160,6 +168,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
                     params.put("payMethod", bank);
                     params.put("tdAmount", amount);
                     params.put("tdTotalPrice", price);
+                    params.put("id", id);
+                    params.put("upAmount", updAmt);
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlReq,
                             new JSONObject(params),

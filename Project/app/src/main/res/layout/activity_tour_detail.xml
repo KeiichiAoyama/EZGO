@@ -117,6 +117,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/priceTour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -124,17 +125,20 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/slotTour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
 
                 <TextView
+                    android:id="@+id/addFeeTour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rp"
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/totPriceTour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rp"
@@ -187,7 +191,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/orderTicket"
+        android:id="@+id/orderTour"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -212,7 +216,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="@+id/orderTicket"
+        app:layout_constraintBottom_toBottomOf="@+id/orderTour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />

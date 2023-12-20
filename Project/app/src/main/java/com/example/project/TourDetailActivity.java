@@ -9,102 +9,80 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
-public class TourDetailActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class TourDetailActivity extends AppCompatActivity{
+    FrameLayout back;
+    ImageView img;
+    TextView name, price, nights, totprice, addfee;
+    MaterialButton add, order;
 
-    private TextView calenderTour;
-
-    private int tanggal, bulan, tahun;
-
-    private Spinner person;
-    private String[] persons = {"1","2","3","4","5","6","7","8","9","10"};
-
-    private Spinner day;
-    private String[] days = {"1 Day","2 Days","3 Days","4 Days","5 Days","6 Days","7 Days","8 Days","9 Days","10 Days"};
+    int quantity = 1;
+    int fee = 2000;
+    int totPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_detail);
-/*
-        // Day
-        day = (Spinner)findViewById(R.id.dayDetail1);
-        day.setOnItemSelectedListener(this);
-        ArrayAdapter adapterDay = new ArrayAdapter(this, android.R.layout.simple_spinner_item,days);
-        day.setAdapter(adapterDay);
+        Intent intent = getIntent();
+        tour tour = (tour) intent.getSerializableExtra("object");
 
-        // Person
-        person = (Spinner)findViewById(R.id.personDetail1);
-        person.setOnItemSelectedListener(this);
-        ArrayAdapter adapterPerson = new ArrayAdapter(this, android.R.layout.simple_spinner_item,persons);
-        person.setAdapter(adapterPerson);
+        back = findViewById(R.id.backDetailTour);
+        img = findViewById(R.id.imgTour);
+        name = findViewById(R.id.htlName);
+        price = findViewById(R.id.priceTour);
+        nights = findViewById(R.id.slotTour);
+        totprice = findViewById(R.id.totPriceTour);
+        addfee = findViewById(R.id.addFeeTour);
+        add = findViewById(R.id.addMore);
+        order = findViewById(R.id.orderTour);
 
-        calenderTour = findViewById(R.id.calenderTour);
-        ImageButton back = (ImageButton)findViewById(R.id.backDetail1);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-                finish();
-            }
-        });
-        ImageButton search = (ImageButton)findViewById(R.id.searchDetail1);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),SearchActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
-        calenderTour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                tahun = calendar.get(Calendar.YEAR);
-                bulan = calendar.get(Calendar.MONTH);
-                tanggal = calendar.get(Calendar.DAY_OF_MONTH);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
-                DatePickerDialog dialog = new DatePickerDialog(TourDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        tahun = i;
-                        bulan = i1;
-                        tanggal = i2;
+        totPrice = tour.tpPrice * quantity + fee;
 
-                        calenderTour.setText(tanggal+"/"+bulan+"/"+tahun);
-                    }
-                },tahun,bulan,tanggal);
-                dialog.show();
+        String urlImg = "https://projekuasmobappezgowebsite.000webhostapp.com/images/";
+        String image = urlImg + tour.tpImage;
 
+        Picasso.get().load(image).into(img);
+
+        name.setText(tour.tpName);
+        price.setText(decimalFormat.format(tour.tpPrice));
+        nights.setText(Integer.toString(quantity));
+        addfee.setText(decimalFormat.format(fee));
+        totprice.setText(decimalFormat.format(totPrice));
+
+        back.setOnClickListener(view -> onBackPressed());
+
+        add.setOnClickListener(view -> {
+            if((quantity + 1) <= tour.tpSlot){
+                quantity++;
+                totPrice = tour.tpPrice * quantity + fee;
+                nights.setText(Integer.toString(quantity));
+                totprice.setText(decimalFormat.format(totPrice));
+            }else{
+                Toast.makeText(getApplicationContext(), "Max Amount Reached", Toast.LENGTH_LONG).show();
             }
         });
 
-        MaterialButton btnOrder = (MaterialButton) findViewById(R.id.orderTour);
-        btnOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
-                startActivity(i);
-            }
+        order.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
+            i.putExtra("object", tour);
+            i.putExtra("price", totPrice);
+            i.putExtra("amount", quantity);
+            startActivity(i);
         });
-        */
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

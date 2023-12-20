@@ -191,7 +191,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/orderTicket"
+        android:id="@+id/orderHotel"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -208,15 +208,15 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addMore"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="20dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="80dp"
-        android:text="@string/addMore"
+        android:text="Add Night"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="@+id/orderTicket"
+        app:layout_constraintBottom_toBottomOf="@+id/orderHotel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />

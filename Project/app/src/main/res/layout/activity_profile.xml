@@ -14,7 +14,7 @@
         android:scrollbars="none">
 
         <TextView
-            android:id="@+id/toolbar"
+            android:id="@+id/htlName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/htlName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

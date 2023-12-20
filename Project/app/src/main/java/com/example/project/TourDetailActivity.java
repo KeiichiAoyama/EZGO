@@ -33,7 +33,7 @@ public class TourDetailActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_detail);
-
+/*
         // Day
         day = (Spinner)findViewById(R.id.dayDetail1);
         day.setOnItemSelectedListener(this);
@@ -95,6 +95,7 @@ public class TourDetailActivity extends AppCompatActivity implements AdapterView
                 startActivity(i);
             }
         });
+        */
     }
 
     @Override

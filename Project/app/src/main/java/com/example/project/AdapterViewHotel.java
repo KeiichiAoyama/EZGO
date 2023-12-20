@@ -5,33 +5,43 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 public class AdapterViewHotel extends RecyclerView.Adapter<AdapterViewHotel.MyViewHolder> {
     private final Context context;
-    final HotelData[] originalHotel;
-    private HotelData[] hotel;
+    final List<hotel> originalHotel;
+    private List<hotel> hotel =  new ArrayList<>();
 
-    public AdapterViewHotel(Context context, HotelData[] hotel) {
+    public AdapterViewHotel(Context context, List<hotel> hotel) {
         this.context = context;
-        this.originalHotel = hotel.clone();
+        this.originalHotel = hotel;
         this.hotel = hotel;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtNama, txtPrice;
+        public TextView txtNama, txtPrice, txtKamar, txtMalam, txtDate;
+        public ImageView imgHotel;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             txtNama = itemView.findViewById(R.id.txtNamaHotel);
-            txtPrice = itemView.findViewById(R.id.txtPrice);
+            txtPrice = itemView.findViewById(R.id.hotelPrice);
+            txtKamar = itemView.findViewById(R.id.txtKamarHotel);
+            txtMalam = itemView.findViewById(R.id.txtMalamHotel);
+            txtDate = itemView.findViewById(R.id.txtDateHotel);
+            imgHotel = itemView.findViewById(R.id.imgHotelView);
         }
     }
 
@@ -44,38 +54,41 @@ public class AdapterViewHotel extends RecyclerView.Adapter<AdapterViewHotel.MyVi
 
     @Override
     public void onBindViewHolder(AdapterViewHotel.MyViewHolder holder, int position) {
-        HotelData hotelData = hotel[position];
+        hotel hotelData = hotel.get(position);
+
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        String price = "Rp "+decimalFormat.format(hotelData.getPrice())+"/Pax";
-        holder.txtNama.setText(hotelData.getName());
+        String price = decimalFormat.format(hotelData.hPrice)+"/Pax";
+
+        String nights = hotelData.hNights + " Nights Available";
+
+        holder.txtNama.setText(hotelData.hName);
         holder.txtPrice.setText(price);
+        holder.txtKamar.setText(hotelData.hRoomType);
+        holder.txtMalam.setText(nights);
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date dateForm = null;
+        try {
+            dateForm = inputFormat.parse(hotelData.hDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
+        String outputDateString = outputFormat.format(dateForm);
+
+        holder.txtDate.setText(outputDateString);
+
         holder.itemView.setOnClickListener(view -> {
             Intent i = new Intent(context, HotelDetailActivity.class);
+            i.putExtra("object", hotelData);
             context.startActivity(i);
         });
     }
 
     @Override
     public int getItemCount() {
-        return hotel.length;
-    }
-
-    public void filterHotel(String locText, String dateText) {
-        ArrayList<HotelData> filteredList = new ArrayList<>();
-
-        for (HotelData hotelData : originalHotel) {
-            String location = hotelData.getAddress();
-            String date = hotelData.getDate();
-
-            boolean isFromMatch = location.toLowerCase().contains(locText.toLowerCase());
-            boolean isDateMatch = date.equals(dateText);
-
-            if (isFromMatch && isDateMatch) {
-                filteredList.add(hotelData);
-            }
-        }
-
-        hotel = filteredList.toArray(new HotelData[0]);
-        notifyDataSetChanged();
+        return hotel.size();
     }
 }

@@ -24,7 +24,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/toolbar"
+        android:id="@+id/htlName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -63,25 +63,40 @@
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/htlName">
         <!--From-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/location"
+            android:text="City"
             android:textSize="18sp" />
 
-        <TextView
-            android:gravity="start|center"
-            android:textStyle="bold"
-            android:text="@string/location"
-            android:id="@+id/btnLocationHotel"
-            android:drawablePadding="10dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape_stroke"
-            android:padding="10dp"
-            app:drawableStartCompat="@drawable/baseline_location_on_24" />
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_location_on_24"
+                android:contentDescription="@string/icon" />
+
+            <Spinner
+                android:id="@+id/htlCitySpin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/roundmain"
+                android:dropDownWidth="match_parent"
+                android:dropDownVerticalOffset="40dp"
+                android:gravity="start|center"
+                android:popupBackground="@drawable/round_spinner"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
 
         <!--Date-->
         <TextView
@@ -143,7 +158,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/person"
+            android:text="Nights"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -156,10 +171,10 @@
             android:padding="10dp">
 
             <ImageView
-                android:contentDescription="@string/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/baseline_people_alt_24" />
+                android:background="@drawable/baseline_timer_24"
+                android:contentDescription="@string/icon" />
 
             <Spinner
                 android:gravity="start|center"

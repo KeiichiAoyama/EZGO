@@ -8,7 +8,7 @@
     tools:context=".OrderFragment">
 
     <TextView
-        android:id="@+id/toolbar"
+        android:id="@+id/htlName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -31,7 +31,7 @@
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/htlName"
         app:queryBackground="@android:color/transparent"
         app:queryHint="Explore Now.." />
 
@@ -63,7 +63,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/htlName" />
             <!--Hotel-->
             <TextView
                 android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/htlName" />
             <!--Tour-->
             <TextView
                 android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/htlName" />
         </LinearLayout>
     </ScrollView>
 

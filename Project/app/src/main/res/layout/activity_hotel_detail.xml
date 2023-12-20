@@ -24,7 +24,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/toolbar"
+        android:id="@+id/htlName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -41,7 +41,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/htlName"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="20dp"
@@ -90,12 +90,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:text="@string/ticket_price" />
+                    android:text="Hotel Price" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ticket_quantity" />
+                    android:text="Nights Stayed" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,6 +117,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/htlPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -124,17 +125,20 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/htlNights"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
 
                 <TextView
+                    android:id="@+id/htlAddFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rp"
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/htlTotPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rp"

@@ -335,7 +335,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/orderTicket"
+        android:id="@+id/orderList"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -360,7 +360,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="@+id/orderTicket"
+        app:layout_constraintBottom_toBottomOf="@+id/orderList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />

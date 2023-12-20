@@ -7,26 +7,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -35,7 +30,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class TicketDetailActivity extends AppCompatActivity {
 
@@ -70,7 +64,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         qty = findViewById(R.id.ticketQty);
         addfee = findViewById(R.id.addFee);
         totalprice = findViewById(R.id.totalPrice);
-        order = findViewById(R.id.orderTicket);
+        order = findViewById(R.id.orderList);
         add = findViewById(R.id.addMore);
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###");

@@ -58,7 +58,6 @@ public class ExploreDetailActivity extends AppCompatActivity {
         String urlImg = "https://projekuasmobappezgowebsite.000webhostapp.com/images/";
 
         FrameLayout btnBack = findViewById(R.id.backDetailExplore);
-        FrameLayout btnSearch = findViewById(R.id.searchDetailExplore);
         locImg = findViewById(R.id.imgExploreDetail);
         btnLike = findViewById(R.id.btnLike);
         locName = findViewById(R.id.titleExplore);
@@ -118,10 +117,6 @@ public class ExploreDetailActivity extends AppCompatActivity {
         }
 
         btnBack.setOnClickListener(view -> onBackPressed());
-        btnSearch.setOnClickListener(view -> {
-            Intent i = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(i);
-        });
         btnLike.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
                 likes++;

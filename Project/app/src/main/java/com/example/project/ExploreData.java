@@ -1,48 +1,25 @@
 package com.example.project;
 
 public class ExploreData {
+    private location obj;
 
-    private int gambar;
-    private String place;
-    private int rating;
-    private boolean like;
-
-    public ExploreData(int gambar, String place, int rating, boolean like) {
-        this.gambar = gambar;
-        this.place = place;
-        this.rating = rating;
-        this.like = like;
+    public ExploreData(location obj) {
+        this.obj = obj;
     }
 
-    public int getGambar() {
-        return gambar;
+    public String getTitle() {
+        return obj.lName;
     }
 
-    public void setGambar(int gambar) {
-        this.gambar = gambar;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
+    public String getImage() {
+        return obj.lImage;
     }
 
     public int getRating() {
-        return rating;
+        return obj.lLikes;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public boolean isLike() {
-        return like;
-    }
-
-    public void setLike(boolean like) {
-        this.like = like;
+    public location getObj() {
+        return this.obj;
     }
 }

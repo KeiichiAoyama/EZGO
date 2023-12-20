@@ -1,8 +1,6 @@
 package com.example.project;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -11,16 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
@@ -54,7 +48,7 @@ public class TicketActivity extends AppCompatActivity implements AdapterView.OnI
 
         //find id
         type = findViewById(R.id.type);
-        passenger = findViewById(R.id.passanger);
+        passenger = findViewById(R.id.slotTourSpin);
         FrameLayout back = findViewById(R.id.backTicket1);
         FrameLayout search = findViewById(R.id.searchTicket1);
         from = findViewById(R.id.fromSpin);

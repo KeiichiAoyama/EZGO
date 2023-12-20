@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,6 +81,11 @@ public class AdapterViewHotel extends RecyclerView.Adapter<AdapterViewHotel.MyVi
         String outputDateString = outputFormat.format(dateForm);
 
         holder.txtDate.setText(outputDateString);
+
+        String urlImg = "https://projekuasmobappezgowebsite.000webhostapp.com/images/";
+        String image = urlImg + hotelData.hImage;
+
+        Picasso.get().load(image).into(holder.imgHotel);
 
         holder.itemView.setOnClickListener(view -> {
             Intent i = new Intent(context, HotelDetailActivity.class);

@@ -147,4 +147,8 @@
     <string name="transfer_amount">Transfer Amount</string>
     <string name="transfer_done">Transfer Done</string>
     <string name="addMore">Add Seat</string>
+    <string name="tel">Tel</string>
+    <string name="save">Save</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
 </resources>

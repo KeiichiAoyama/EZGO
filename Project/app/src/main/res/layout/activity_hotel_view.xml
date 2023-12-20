@@ -6,50 +6,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HotelViewActivity">
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:elevation="5dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <FrameLayout
+        android:id="@+id/backHotelView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/backHotelView"
+        <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/white_arrow_back_24" />
+            android:layout_gravity="center"
+            android:background="@drawable/baseline_arrow_back_24"
+            android:contentDescription="@string/btn_b" />
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="120dp"
-            android:text="@string/hotel"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/fonarto"
+        android:text="@string/hotel"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backHotelView" />
 
-        <ImageButton
-            android:id="@+id/searchHotelView"
+    <FrameLayout
+        android:id="@+id/searchHotelView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/white_search_24" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:background="@drawable/round_search_24"
+            android:contentDescription="@string/btn_s" />
+    </FrameLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewHotel"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

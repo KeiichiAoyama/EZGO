@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 public class HotelViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AdapterViewHotel adapterViewHotel;
-    ImageButton back, search;
+    FrameLayout back, search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

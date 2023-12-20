@@ -48,10 +48,10 @@ public class PaymentActivity extends AppCompatActivity {
            type = 3;
         }
 
-        no1 = "A";
-        no2 = "B";
-        no3 = "C";
-        no4 = "D";
+        no1 = "130013901943";
+        no2 = "013104341314134";
+        no3 = "0441304134135533";
+        no4 = "34134319103934";
 
         btnBack.setOnClickListener(view -> onBackPressed());
         payment1.setOnClickListener(view -> {

@@ -31,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -88,9 +89,12 @@ public class PaymentDetailActivity extends AppCompatActivity {
             type = 3;
         }
 
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String strprice = decimalFormat.format(price);
+
         txtBank.setText(bank);
         txtRek.setText(noRek);
-        txtAmount.setText(String.valueOf(price));
+        txtAmount.setText(strprice);
         imgBank.setImageResource(img);
 
         new CountDownTimer(duration * 1000L, 1000) {

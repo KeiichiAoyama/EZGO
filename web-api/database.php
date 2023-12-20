@@ -5,7 +5,7 @@ class DB{
 
     private function __construct(){
         try{
-            $this->_pdo = new PDO('mysql:host=localhost;dbname=ezgo;', 'root', '');
+            $this->_pdo = new PDO('mysql:host=localhost;dbname=id21634510_ezgo;', 'id21634510_root', 'Ezgo$mobapp20');
         }catch(PDOException $e){
             die($e->getMessage());
         }
@@ -71,49 +71,51 @@ class DB{
         return false;
     }
 
-    public function select($getField, $table, $where = null, $limit = null, $orderby = null){
-        if(is_array($where) && count($where) === 3 && !($this->isRectangular($where))){
-            $operators = array('=', '>', '<', '>=', '<=');
-
-            $field = $where[0];
-            $operator = $where[1];
-            $value = $where[2];
-
-            if(in_array($operator, $operators)){
-                $sql = "SELECT {$getField} FROM {$table} WHERE {$field} {$operator} ?";
-                if(!$this->query($sql, array($value))->error()){
-                    return $this;
+    public function select($getField, $table, $where = null, $limit = null, $orderby = null, $orderDirection = 'ASC') {
+        $sql = "SELECT {$getField} FROM {$table}";
+    
+        $value = array();
+    
+        if (is_array($where)) {
+            if (count($where) === 3 && !$this->isRectangular($where)) {
+                $operators = array('=', '>', '<', '>=', '<=');
+    
+                $field = $where[0];
+                $operator = $where[1];
+                $value = array($where[2]);
+    
+                if (in_array($operator, $operators)) {
+                    $sql .= " WHERE {$field} {$operator} ?";
                 }
-            }
-        }else if(is_null($where)){
-            $sql = "SELECT {$getField} FROM {$table}";
-            if(!$this->query($sql)->error()){
-                return $this;
-            }
-        }else if(is_array($where) && $this->isRectangular($where)){
-            $sql = "SELECT {$getField} FROM {$table} WHERE ";
-            $x = 1;
-            $value = array();
-            for($i = 0; $i < count($where); $i++){
-                $sql .= $where[$i][0]." ".$where[$i][1]." ?";
-                if($x < count($where)){
-                    $sql.=" AND ";
+            } else if ($this->isRectangular($where)) {
+                $sql .= " WHERE ";
+                $conditions = array();
+                foreach ($where[0] as $index => $field) {
+                    $operator = $where[1][$index];
+                    $val = $where[2][$index];
+            
+                    $conditions[] = "{$field} {$operator} ?";
+                    $value[] = $val;
                 }
-                $value[] = $where[$i][2];
-                $x++;
-            }
-            if (!is_null($limit)) {
-                $sql .= " LIMIT {$limit}";
-            }
-            if(!is_null($orderby)){
-                $sql .= " ORDER BY {$orderby}";
-            }
-            if(!$this->query($sql, $value)->error()){
-                return $this;
+                $sql .= implode(" AND ", $conditions);
             }
         }
+    
+        if (!is_null($orderby)) {
+            $sql .= " ORDER BY {$orderby} {$orderDirection}";
+        }
+    
+        if (!is_null($limit)) {
+            $sql .= " LIMIT {$limit}";
+        }
+    
+        if (!$this->query($sql, $value)->error()) {
+            return $this;
+        }
+    
         return false;
     }
+
 
     public function insert($table, $fields = array()){
         if(count($fields)){
@@ -139,9 +141,10 @@ class DB{
     }
 
     public function update($table, $fields, $where){
-        if(count($fields) && count($where) === 2){
+        if(count($fields) && count($where)){
             $set = null;
             $keys = array_keys($fields);
+            $whereKeys = array_keys($where);
             $x = 1;
 
             foreach($keys as $key){
@@ -151,9 +154,18 @@ class DB{
                 }
                 $x++;
             }
+            
+            $whereClause = null;
+            foreach ($whereKeys as $key) {
+                $whereClause .= "$key = ? AND ";
+            }
+            $whereClause = rtrim($whereClause, ' AND ');
 
-            $sql = "UPDATE {$table} SET {$set} WHERE {$where[0]} = `{$where[1]}`";
-
+            
+            $sql = "UPDATE {$table} SET {$set} WHERE {$whereClause}";
+            
+            $fields = array_merge(array_values($fields), array_values($where));
+            
             if (!$this->query($sql, $fields)->error()) {
                 return true;
             }

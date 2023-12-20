@@ -52,7 +52,7 @@ class login{
         $user = $db->select('*', 'users', $where)->getResult();
         if(count($user) > 0){
             if(strcasecmp($pw, $user[0]->uPassword) == 0){
-                $response = ['Success' => True, 'User' => $user[0]];
+                $response = ['Success' => True, 'Data' => $user[0]];
                 header('Content-Type: application/json');
                 echo json_encode($response);
             }else{

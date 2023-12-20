@@ -1,8 +1,5 @@
 <?php
-
-namespace App\Controller;
-
-use App\Tools\DB;
+include_once 'database.php';
 
 class order{
     public function orderTicket(){
@@ -10,25 +7,26 @@ class order{
         $json = file_get_contents('php://input');
 
         $request = json_decode($json, true);
-        $tix = $request['ticket'];
+        $tid = $request['productID'];
         $uid = $request['userID'];
-        $pid = $request['payID'];
+        $pmt = $request['payMethod'];
         $amt = $request['tdAmount'];
         $ttp = $request['tdTotalPrice'];
-
-        $fields = array('userID', 'payID');
-        $values = array($uid, $pid);
+        $id = $request['id'];
+        $uamt = $request['upAmount'];
+            
+        $fields = array('userID', 'paymentMethod', 'productID', 'tdAmount', 'tdTotalPrice');
+        $values = array($uid, $pmt, $tid, $amt, $ttp);
         $assoc_fields = array_combine($fields, $values);
-
-        if($db->insert('transactions', $assoc_fields)){
-
-            $tidAll = $db->select('ticketID', 'transactions')->getResult();
-            $tid = $tidAll[count($tidAll)-1]->ticketID;
-
-            $fields = array('transID', 'productID', 'tdAmount', 'tdTotalPrice');
-            $values = array($tid, $tix->productID, $amt, $ttp);
-
-            if($db->insert('transaction_details', $assoc_fields)){
+        
+        if($db->insert('transaction_details', $assoc_fields)){
+            $fields = array('tcSeat');
+            $values = array($uamt);
+            $assoc_array = array_combine($fields, $values);
+            
+            $where = array('ticketID', $id);
+            
+            if($db->update('tickets', $assoc_array, $where)){
                 $response = ['Success'=> True];
                 header('Content-Type: application/json');
                 echo json_encode($response);
@@ -36,12 +34,12 @@ class order{
                 $response = ['Success'=> False];
                 header('Content-Type: application/json');
                 echo json_encode($response);
-            }
+            }  
         }else{
             $response = ['Success'=> False];
             header('Content-Type: application/json');
             echo json_encode($response);
-        }
+        }  
     }
 
     public function orderHotel(){
@@ -49,25 +47,26 @@ class order{
         $json = file_get_contents('php://input');
 
         $request = json_decode($json, true);
-        $htl = $request['hotel'];
+        $tid = $request['productID'];
         $uid = $request['userID'];
-        $pid = $request['payID'];
+        $pmt = $request['payMethod'];
         $amt = $request['tdAmount'];
         $ttp = $request['tdTotalPrice'];
-
-        $fields = array('userID', 'payID');
-        $values = array($uid, $pid);
+        $id = $request['id'];
+        $uamt = $request['upAmount'];
+            
+        $fields = array('userID', 'paymentMethod', 'productID', 'tdAmount', 'tdTotalPrice');
+        $values = array($uid, $pmt, $tid, $amt, $ttp);
         $assoc_fields = array_combine($fields, $values);
-
-        if($db->insert('transactions', $assoc_fields)){
-
-            $tidAll = $db->select('ticketID', 'transactions')->getResult();
-            $tid = $tidAll[count($tidAll)-1]->ticketID;
-
-            $fields = array('transID', 'productID', 'tdAmount', 'tdTotalPrice');
-            $values = array($tid, $htl->productID, $amt, $ttp);
-
-            if($db->insert('transaction_details', $assoc_fields)){
+        
+        if($db->insert('transaction_details', $assoc_fields)){
+            $fields = array('hNights');
+            $values = array($uamt);
+            $assoc_array = array_combine($fields, $values);
+            
+            $where = array('hotelID', $id);
+            
+            if($db->update('hotel', $assoc_array, $where)){
                 $response = ['Success'=> True];
                 header('Content-Type: application/json');
                 echo json_encode($response);
@@ -75,12 +74,12 @@ class order{
                 $response = ['Success'=> False];
                 header('Content-Type: application/json');
                 echo json_encode($response);
-            }
+            }  
         }else{
             $response = ['Success'=> False];
             header('Content-Type: application/json');
             echo json_encode($response);
-        }
+        }  
     }
 
     public function orderTour(){
@@ -88,25 +87,26 @@ class order{
         $json = file_get_contents('php://input');
 
         $request = json_decode($json, true);
-        $trp = $request['tour'];
+        $tid = $request['productID'];
         $uid = $request['userID'];
-        $pid = $request['payID'];
+        $pmt = $request['payMethod'];
         $amt = $request['tdAmount'];
         $ttp = $request['tdTotalPrice'];
-
-        $fields = array('userID', 'payID');
-        $values = array($uid, $pid);
+        $id = $request['id'];
+        $uamt = $request['upAmount'];
+            
+        $fields = array('userID', 'paymentMethod', 'productID', 'tdAmount', 'tdTotalPrice');
+        $values = array($uid, $pmt, $tid, $amt, $ttp);
         $assoc_fields = array_combine($fields, $values);
-
-        if($db->insert('transactions', $assoc_fields)){
-
-            $tidAll = $db->select('ticketID', 'transactions')->getResult();
-            $tid = $tidAll[count($tidAll)-1]->ticketID;
-
-            $fields = array('transID', 'productID', 'tdAmount', 'tdTotalPrice');
-            $values = array($tid, $trp->productID, $amt, $ttp);
-
-            if($db->insert('transaction_details', $assoc_fields)){
+        
+        if($db->insert('transaction_details', $assoc_fields)){
+            $fields = array('tpSlot');
+            $values = array($uamt);
+            $assoc_array = array_combine($fields, $values);
+            
+            $where = array('tourID', $id);
+            
+            if($db->update('tour_package', $assoc_array, $where)){
                 $response = ['Success'=> True];
                 header('Content-Type: application/json');
                 echo json_encode($response);
@@ -114,12 +114,12 @@ class order{
                 $response = ['Success'=> False];
                 header('Content-Type: application/json');
                 echo json_encode($response);
-            }
+            }  
         }else{
             $response = ['Success'=> False];
             header('Content-Type: application/json');
             echo json_encode($response);
-        }
+        }  
     }
 
     public function changeTicket(){
@@ -514,25 +514,20 @@ class order{
         $json = file_get_contents('php://input');
 
         $request = json_decode($json, true);
-        $city = $request['city'];
-        $date = $request['date'];
-        $room = $request['roomType'];
+        $city = $request['cityID'];
+        $date = $request['hDate'];
+        $room = $request['hRoomType'];
+        $night = $request['hNights'];
 
-        $cols = array('cityID', 'hDate', 'hRoomType');
-        $operator = array('=', '=', '=');
-        $vals = array($city, $date, $room);
+        $cols = array('cityID', 'hDate', 'hRoomType', 'hNights');
+        $operator = array('=', '>=', '=', '>=');
+        $vals = array($city, $date, $room, $night);
         $where = array($cols, $operator, $vals);
 
-        $htls = $db->select('*', 'hotel', $where);
+        $htls = $db->select('*', 'hotel', $where)->getResult();
 
         if(count($htls) > 0){
-            foreach($htls as $htl){
-                $imgPath = $htl->hImage;
-                $fullPath = "images/".$imgPath;
-                $htl->hImage = $fullPath;
-            }
-
-            $response = ['Success'=> True, 'hotel' => $htls];
+            $response = ['Success'=> True, 'Data' => $htls];
             header('Content-Type: application/json');
             echo json_encode($response);
         }else{
@@ -554,20 +549,14 @@ class order{
         $type = $request['tcType'];
 
         $cols = array('tcFrom', 'tcDestination', 'tcDate', 'tcSeat', 'tcType');
-        $operator = array('=', '=', '=', '=', '=');
+        $operator = array('=', '=', '>=', '>=', '=');
         $vals = array($from, $to, $date, $seat, $type);
         $where = array($cols, $operator, $vals);
 
-        $tixs = $db->select('*', 'tickets', $where);
+        $tixs = $db->select('*', 'tickets', $where)->getResult();
 
         if(count($tixs) > 0){
-            foreach($tixs as $tix){
-                $imgPath = $tix->tcImage;
-                $fullPath = "images/".$imgPath;
-                $tix->tcImage = $fullPath;
-            }
-
-            $response = ['Success'=> True, 'tickets' => $tixs];
+            $response = ['Success'=> True, 'Data' => $tixs];
             header('Content-Type: application/json');
             echo json_encode($response);
         }else{
@@ -584,23 +573,17 @@ class order{
         $request = json_decode($json, true);
         $city = $request['cityID'];
         $date = $request['tpDate'];
-        $type = $request['tpSlot'];
+        $slot = $request['tpSlot'];
 
         $cols = array('cityID', 'tpDate', 'tpSlot');
-        $operator = array('=', '=', '=');
-        $vals = array($city, $date, $type);
+        $operator = array('=', '>=', '>=');
+        $vals = array($city, $date, $slot);
         $where = array($cols, $operator, $vals);
 
-        $trps = $db->select('*', 'trps', $where);
+        $trps = $db->select('*', 'tour_package', $where)->getResult();
 
         if(count($trps) > 0){
-            foreach($trps as $trp){
-                $imgPath = $trp->tpImage;
-                $fullPath = "images/".$imgPath;
-                $trp->tpImage = $fullPath;
-            }
-
-            $response = ['Success'=> True, 'tours' => $trps];
+            $response = ['Success'=> True, 'Data' => $trps];
             header('Content-Type: application/json');
             echo json_encode($response);
         }else{
@@ -661,6 +644,24 @@ class order{
                 header('Content-Type: application/json');
                 echo json_encode($response);
             }
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+    
+    public function homePopular(){
+        $db = DB::getInstance();
+        
+        $tixs = $db->select('*', 'tickets', null, 2, 'tcRating', 'DESC')->getResult();
+        $htls = $db->select('*', 'hotel', null, 2, 'hRating', 'DESC')->getResult();
+        $trps = $db->select('*', 'tour_package', null, 2, 'tpRating', 'DESC')->getResult();
+
+        if(count($tixs) && count($htls) && count($trps)){
+            $response = ['Success'=> True, 'Data1' => $tixs, 'Data2' => $htls, 'Data3' => $trps];
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }else{
             $response = ['Success'=> False];
             header('Content-Type: application/json');

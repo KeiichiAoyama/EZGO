@@ -1,8 +1,5 @@
 <?php
-
-namespace App\Controller;
-
-use App\Tools\DB;
+include_once 'database.php';
 
 class account{
     public function showAccount(){
@@ -62,6 +59,25 @@ class account{
                 header('Content-Type: application/json');
                 echo json_encode($response);
             }
+        }else{
+            $response = ['Success'=> False];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+    
+    public function delete(){
+        $db = DB::getInstance();
+        $json = file_get_contents('php://input');
+
+        $request = json_decode($json, true);
+        $uid = $request['userID'];
+        
+        $where = array('userID', '=', $uid);
+        if($db->delete('users', $where)){
+            $response = ['Success'=> True];
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }else{
             $response = ['Success'=> False];
             header('Content-Type: application/json');
